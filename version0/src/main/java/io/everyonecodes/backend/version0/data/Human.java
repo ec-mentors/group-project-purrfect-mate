@@ -1,6 +1,7 @@
 package io.everyonecodes.backend.version0.data;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -25,9 +26,6 @@ public class Human {
 
     @Column()
     private String location;
-
-    @OneToMany(mappedBy = "human", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Cat> cats;
 
     public Human(String username, String email, String description, String location) {
         this.username = username;
@@ -79,25 +77,18 @@ public class Human {
         this.location = location;
     }
 
-    public List<Cat> getCats() {
-        return cats;
-    }
-
-    public void setCats(List<Cat> cats) {
-        this.cats = cats;
-    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Human human = (Human) o;
-        return Objects.equals(id, human.id) && Objects.equals(username, human.username) && Objects.equals(email, human.email) && Objects.equals(description, human.description) && Objects.equals(location, human.location) && Objects.equals(cats, human.cats);
+        return Objects.equals(id, human.id) && Objects.equals(username, human.username) && Objects.equals(email, human.email) && Objects.equals(description, human.description) && Objects.equals(location, human.location);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, email, description, location, cats);
+        return Objects.hash(id, username, email, description, location);
     }
 
     @Override
@@ -107,8 +98,7 @@ public class Human {
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", description='" + description + '\'' +
-                ", location='" + location + '\'' +
-                ", cats=" + cats +
+                ", location='" + location +
                 '}';
     }
 }

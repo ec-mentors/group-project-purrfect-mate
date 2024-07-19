@@ -1,6 +1,7 @@
 package io.everyonecodes.backend.version0.data;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.util.Objects;
@@ -22,15 +23,25 @@ public class Cat {
     @Column()
     private String location;
 
-    @ManyToOne
-    @JoinColumn(name = "human_id", nullable = false)
-    private Human human;
 
-    public Cat(String name, String description, String location, Human human) {
+
+    // TODO: change human object reference to just the human id!!!!!
+    @Column(name = "human_id", nullable = false)
+    private Long humanId;
+
+
+
+    public Cat(String name, Long humanId) {
         this.name = name;
-        this.description = description;
-        this.location = location;
-        this.human = human;
+        this.humanId = humanId;
+    }
+
+    public Long getHumanId() {
+        return humanId;
+    }
+
+    public void setHumanId(Long humanId) {
+        this.humanId = humanId;
     }
 
     public Cat() {
@@ -68,25 +79,18 @@ public class Cat {
         this.location = location;
     }
 
-    public Human getHuman() {
-        return human;
-    }
-
-    public void setHuman(Human human) {
-        this.human = human;
-    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Cat cat = (Cat) o;
-        return Objects.equals(id, cat.id) && Objects.equals(name, cat.name) && Objects.equals(description, cat.description) && Objects.equals(location, cat.location) && Objects.equals(human, cat.human);
+        return Objects.equals(id, cat.id) && Objects.equals(name, cat.name) && Objects.equals(description, cat.description) && Objects.equals(location, cat.location) && Objects.equals(humanId, cat.humanId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description, location, human);
+        return Objects.hash(id, name, description, location, humanId);
     }
 
     @Override
@@ -96,7 +100,7 @@ public class Cat {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", location='" + location + '\'' +
-                ", human=" + human +
+                ", humanId=" + humanId +
                 '}';
     }
 }

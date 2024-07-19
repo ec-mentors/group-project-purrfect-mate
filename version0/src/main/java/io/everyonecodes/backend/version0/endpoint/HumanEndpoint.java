@@ -2,7 +2,7 @@ package io.everyonecodes.backend.version0.endpoint;
 
 
 import io.everyonecodes.backend.version0.data.Human;
-import io.everyonecodes.backend.version0.service.HumanAndCatService;
+import io.everyonecodes.backend.version0.service.HumanService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,9 +11,9 @@ import java.util.List;
 @RequestMapping("/humans")
 public class HumanEndpoint {
 
-    HumanAndCatService service;
+    HumanService service;
 
-    public HumanEndpoint(HumanAndCatService service) {
+    public HumanEndpoint(HumanService service) {
         this.service = service;
     }
 

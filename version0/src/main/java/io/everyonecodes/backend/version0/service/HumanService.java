@@ -1,25 +1,27 @@
 package io.everyonecodes.backend.version0.service;
 
 import io.everyonecodes.backend.version0.data.Human;
-import io.everyonecodes.backend.version0.repository.CatRepository;
 import io.everyonecodes.backend.version0.repository.HumanRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
-public class HumanAndCatService {
+public class HumanService {
 
     private final HumanRepository humanRepo;
-    private final CatRepository catRepo;
 
-    public HumanAndCatService(HumanRepository humanRepo, CatRepository catRepo) {
+    public HumanService(HumanRepository humanRepo) {
         this.humanRepo = humanRepo;
-        this.catRepo = catRepo;
     }
 
     public List<Human> getAllHumans() {
         return humanRepo.findAll();
+    }
+
+    public Optional<Human> getHumanById(Long id) {
+        return humanRepo.findById(id);
     }
 
     public Human createHuman(String username, String email) {
