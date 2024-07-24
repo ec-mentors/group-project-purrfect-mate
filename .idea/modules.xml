@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/group-project-purrfect-mate.iml" filepath="$PROJECT_DIR$/.idea/group-project-purrfect-mate.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/purrfect-mate.iml" filepath="$PROJECT_DIR$/.idea/purrfect-mate.iml" />
     </modules>
   </component>
 </project>
