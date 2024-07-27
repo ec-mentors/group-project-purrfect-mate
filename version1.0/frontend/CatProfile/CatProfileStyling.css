@@ -30,9 +30,20 @@
     width: 90% !important;
 }
 
+.navbar {
+    z-index: 1000;
+}
+
 body {
     background: url(pics/paws.jpg);
     background-size: 50%;
+    min-height: 100vh;
+    overflow: hidden;
+    margin-top: 0;
+}
+
+#profile-container {
+    margin-top: 200px;
 }
 
 
