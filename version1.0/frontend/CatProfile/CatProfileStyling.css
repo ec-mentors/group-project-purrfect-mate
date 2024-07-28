@@ -35,15 +35,18 @@
 }
 
 body {
-    background: url(pics/paws.jpg);
-    background-size: 50%;
     min-height: 100vh;
-    overflow: hidden;
     margin-top: 0;
 }
 
 #profile-container {
-    margin-top: 200px;
+    margin-top: 150px;
+    background-color: black;
+}
+
+#profile-pic {
+    width: 140px;
+    height: 140px;
 }
 
 

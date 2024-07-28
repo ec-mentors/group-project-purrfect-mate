@@ -15,10 +15,12 @@
 <!-- navbar -->
 <nav class="navbar navbar-dark bg-black m-0 position-fixed w-100 top-0">
     <div class="ms-4 me-5 container-fluid p-0 m-0">
+        <!-- logo and brand -->
         <a class="navbar-brand" href="#">
             <img class="inline-block" src="pics/catHandSmallerHand.png" alt="Bootstrap" width="70" height="70">
             Purrfect Mate
         </a>
+        <!-- nav - options -->
         <ul class="w-30 d-flex justify-content-between navbar-nav list-group-horizontal">
             <li class="">
                 <a class="h6 text-decoration-none nav-item text-white" href="#">Browse</a></li>
@@ -32,44 +34,71 @@
     </div>
 </nav>
 
-<div class="container bg-black text-white p-3" id="profile-container">
-    <div class="row" id="display-name">
-        <div class="col h4">Haiku Liebhart</div>
-    </div>
+<!-- profile -->
+<div class="container text-white p-2" id="profile-container">
     <div class="row mt-3">
-        <div class="col-2">
-            <img src="pics/profilepic.jpg" alt="" class="rounded-circle" width="200" height="200">
+        <!-- profile pic -->
+        <div class="col-2 text-center">
+            <img src="pics/profilepic.jpg" alt="" class="object-fit-cover rounded-circle" id="profile-pic">
         </div>
-        <div class="col-7 align-content-center">
-            <div class="p-2">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, aliquam aperiam assumenda consequuntur culpa earum eveniet inventore, iusto, minima nam nobis odit quidem quisquam quos vitae! Asperiores cum ipsum vitae.
+        <!-- name and description-->
+        <div class="col-7">
+            <div class="container pt-3">
+                <div class="row">
+                    <h4 class="col px-2">Haiku Liebhart</h4>
+                </div>
+                <div class="row">
+                    <p class="p-2 px-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis consequatur, distinctio dolores dolorum eaque eos esse excepturi illum magni minus mollitia nulla obcaecati officiis praesentium quod sed, similique tempore vitae.</p>
+                </div>
             </div>
         </div>
-        <div class="col-3 align-items-center align-content-center">
-            <nav class="navbar text-white bg-black justify-content-center">
-                <ul class="w-80 navbar-nav list-unstyled text-white list-group-horizontal justify-content-between">
-                    <li class="nav-item">
-                        <div class="container p-0">
-                            <div class="row h3">
-                                3572k
-                            </div>
-                            <div class="row h5">
-                                Followers
-                            </div>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <div class="container p-0">
-                            <div class="row h3">
-                                200
-                            </div>
-                            <div class="row h5">
-                                Pictures
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
+        <!-- Stats -->
+        <div class="col-3 align-content-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col text-center">
+                        <span class="h4">2137k</span>
+                        <br> Followers
+                    </div>
+                    <div class="col text-center">
+                        <span class="h4">100</span>
+                        <br> Pictures
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- image grid-->
+    <div class="mt-5 row justify-content-center gx-0">
+        <div class="text-center m-1 p-1 col-3 picture">
+            <img src="https://via.placeholder.com/300" alt="" class="object-fit-cover">
+        </div>
+        <div class="text-center m-1 p-1 col-3 picture">
+            <img src="https://via.placeholder.com/300" alt="" class="object-fit-cover">
+        </div>
+        <div class="text-center m-1 p-1 col-3 picture">
+            <img src="https://via.placeholder.com/300" alt="" class="object-fit-cover">
+        </div>
+        <div class="text-center m-1 p-1 col-3 picture">
+            <img src="https://via.placeholder.com/300" alt="" class="object-fit-cover">
+        </div>
+        <div class="text-center m-1 p-1 col-3 picture">
+            <img src="https://via.placeholder.com/300" alt="" class="object-fit-cover">
+        </div>
+        <div class="text-center m-1 p-1 col-3 picture">
+            <img src="https://via.placeholder.com/300" alt="" class="object-fit-cover">
+        </div>
+        <div class="text-center m-1 p-1 col-3 picture">
+            <img src="https://via.placeholder.com/300" alt="" class="object-fit-cover">
+        </div>
+        <div class="text-center m-1 p-1 col-3 picture">
+            <img src="https://via.placeholder.com/300" alt="" class="object-fit-cover">
+        </div>
+        <div class="text-center m-1 p-1 col-3 picture">
+            <img src="https://via.placeholder.com/300" alt="" class="object-fit-cover">
+        </div>
+        <div class="text-center m-1 p-1 col-3 picture">
+            <img src="" alt="" class="object-fit-cover">
         </div>
     </div>
 </div>
