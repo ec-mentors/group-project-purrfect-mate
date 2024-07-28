@@ -39,14 +39,31 @@ body {
     margin-top: 0;
 }
 
+.navbar {
+    background-color: chartreuse;
+}
+
 #profile-container {
     margin-top: 150px;
-    background-color: black;
 }
 
 #profile-pic {
-    width: 140px;
-    height: 140px;
+    width: 50%;
+    aspect-ratio: 1 / 1;
+}
+
+.pic {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+.picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 
