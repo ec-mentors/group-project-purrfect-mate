@@ -50,6 +50,7 @@ body {
 #profile-pic {
     width: 90%;
     aspect-ratio: 1 / 1;
+    border: 3px solid chartreuse !important;
 }
 
 .pic {
