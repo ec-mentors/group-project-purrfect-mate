@@ -7,15 +7,17 @@ const readMoreButton = document.getElementById("showAllBtn")
 const goBackButton = document.getElementById("goBack")
 const mobileReadMoreButton = document.getElementById("mobile-showAllBtn")
 
-
-readMoreButton.addEventListener("click", function() {
+function switchToReadMore() {
     allDiv.style.display = "none";
     readMoreDiv.style.display = "block";
+}
+
+readMoreButton.addEventListener("click", function() {
+    switchToReadMore();
 })
 
 mobileReadMoreButton.addEventListener("click", function() {
-    allDiv.style.display = "none";
-    readMoreDiv.style.display = "block";
+    switchToReadMore();
 })
 
 goBackButton.addEventListener("click", function() {
@@ -34,6 +36,18 @@ const mobileSaveButton = document.getElementById("mobile-save");
 
 let saved = false;
 
+function switchOpacityIfNeeded() {
+
+    if(saved === false) {
+        saveButton.style.opacity = "50%";
+        mobileSaveButton.style.opacity = "50%";
+    }
+    else {
+        saveButton.style.opacity = "100%";
+        mobileSaveButton.style.opacity = "100%";
+    }
+}
+
 switchOpacityIfNeeded();
 
 saveButton.addEventListener("click", function() {
@@ -44,17 +58,5 @@ mobileSaveButton.addEventListener("click", function () {
     saved = !saved;
     switchOpacityIfNeeded();
 });
-
-function switchOpacityIfNeeded() {
-    
-    if(saved === false) {
-        saveButton.style.opacity = "50%";
-        mobileSaveButton.style.opacity = "50%";
-    }
-    else {
-        saveButton.style.opacity = "100%";
-        mobileSaveButton.style.opacity = "100%";
-    }
-}
 
 

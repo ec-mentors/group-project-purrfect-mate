@@ -42,3 +42,36 @@
     z-index: 1000;
     background-color: var(--primary);
 }
+
+.btn {
+    opacity: 1 !important;
+    color: black !important;
+}
+
+.nav-link{
+    opacity: 1 !important;
+    color: black !important;
+}
+
+.hover-grow {
+    transition: transform 0.3s ease-in-out;
+}
+
+.hover-grow:hover {
+
+    transform: scale(1.2);
+}
+
+@media (min-width: 992px) {
+
+    .w-lg-40 {
+        width: 40% !important;
+    }
+    .w-lg-75 {
+        width: 75% !important;
+    }
+    .w-lg-100 {
+        width: 100% !important;
+    }
+
+}

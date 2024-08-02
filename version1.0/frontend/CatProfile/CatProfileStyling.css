@@ -32,13 +32,6 @@ body {
     object-fit: cover;
 }
 
-@media (max-width: 991px) {
-
-    #profile-container {
-        margin-top: 100px;
-    }
-}
-
 .btn {
     background-color: var(--primary) !important;
 }
@@ -48,7 +41,7 @@ body {
 }
 
 #goBack {
-    background-color: #E894C8;
+    background-color: var(--primary);
 }
 
 #readMoreWrapper {
@@ -57,15 +50,11 @@ body {
 
 
 @media (min-width: 992px) {
-    .w-lg-40 {
-        width: 40% !important;
+
+    #profile-container {
+        margin-top: 100px;
     }
-    .w-lg-75 {
-        width: 75% !important;
-    }
-    .w-lg-100 {
-        width: 100% !important;
-    }
+
 }
 
 
