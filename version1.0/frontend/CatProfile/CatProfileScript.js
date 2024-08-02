@@ -30,26 +30,33 @@ goBackButton.addEventListener("click", function() {
 //Save button functionality
 
 const saveButton = document.getElementById("save");
+const mobileSaveButton = document.getElementById("mobile-save");
 
 let saved = false;
 
 if(saved === false) {
     saveButton.style.opacity = "50%";
+    mobileSaveButton.opacity = "50%";
 }
 else {
     saveButton.style.opacity = "100%";
+    mobileSaveButton.style.opacity = "100%";
 }
 
-saveButton.addEventListener("click", function() {
-    
+saveButton.addEventListener("click", switchOpacity);
+mobileSaveButton.addEventListener("click", switchOpacity);
+
+function switchOpacity() {
     saved = !saved;
 
     if(saved === false) {
         saveButton.style.opacity = "50%";
+        mobileSaveButton.style.opacity = "50%";
     }
     else {
         saveButton.style.opacity = "100%";
+        mobileSaveButton.style.opacity = "100%";
     }
-    
-})
+}
+
 
