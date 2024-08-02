@@ -1,12 +1,14 @@
 package io.everyonecodes.backend.version1.data;
 
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import jakarta.persistence.*;
 
 import java.util.List;
 
 @Entity
 @Table(name = "cats")
+@JsonPropertyOrder(value = { "id", "name", "age", "gender", "description", "location", "isUpForAdoption", "isNeutered", "isOutdoorCat", "human" })
 public class Cat {
 
     @Id
@@ -18,6 +20,9 @@ public class Cat {
 
     @Column()
     private int age;
+
+    @Enumerated(EnumType.ORDINAL)
+    private Gender gender;
 
     @Column()
     private String description;
@@ -49,9 +54,15 @@ public class Cat {
         this.human = human;
     }
 
+
+
+    public Cat() {
+    }
+
     public Cat(Long id,
                String name,
                int age,
+               Gender gender,
                String description,
                String location,
                boolean isUpForAdoption,
@@ -59,9 +70,11 @@ public class Cat {
                boolean isOutdoorCat,
                List<String> healthAttributes,
                Human human) {
+
         this.id = id;
         this.name = name;
         this.age = age;
+        this.gender = gender;
         this.description = description;
         this.location = location;
         this.isUpForAdoption = isUpForAdoption;
@@ -69,9 +82,6 @@ public class Cat {
         this.isOutdoorCat = isOutdoorCat;
         this.healthAttributes = healthAttributes;
         this.human = human;
-    }
-
-    public Cat() {
     }
 
     public Long getId() {
@@ -96,6 +106,14 @@ public class Cat {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 
     public String getDescription() {
