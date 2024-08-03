@@ -54,6 +54,7 @@ saveButton.addEventListener("click", function() {
     saved = !saved;
     switchOpacityIfNeeded();
 });
+
 mobileSaveButton.addEventListener("click", function () {
     saved = !saved;
     switchOpacityIfNeeded();

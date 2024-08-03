@@ -48,6 +48,9 @@ body {
     width: 100% !important;
 }
 
+#mobile-profile-container {
+    margin-top: 15vh;
+}
 
 @media (min-width: 992px) {
 
