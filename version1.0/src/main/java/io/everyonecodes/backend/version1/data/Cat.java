@@ -21,7 +21,7 @@ public class Cat {
     @Column()
     private int age;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private Gender gender;
 
     @Column()
