@@ -2,7 +2,7 @@ package io.everyonecodes.backend.version1.data;
 
 import jakarta.persistence.*;
 
-import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "humans")
@@ -19,15 +19,19 @@ public class Human {
     private String email;
 
     @Column()
-    private String description;
+    private String password;
 
     @Column()
     private String location;
 
-    public Human(String username, String email, String description, String location) {
+    @Column
+    @ElementCollection(fetch = FetchType.EAGER)
+    private Set<String> authorities;
+
+    public Human(String username, String email, String password, String location) {
         this.username = username;
         this.email = email;
-        this.description = description;
+        this.password = password;
         this.location = location;
     }
 
@@ -58,14 +62,6 @@ public class Human {
         this.email = email;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getLocation() {
         return location;
     }
@@ -74,28 +70,21 @@ public class Human {
         this.location = location;
     }
 
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Human human = (Human) o;
-        return Objects.equals(id, human.id) && Objects.equals(username, human.username) && Objects.equals(email, human.email) && Objects.equals(description, human.description) && Objects.equals(location, human.location);
+    public String getPassword() {
+        return password;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, username, email, description, location);
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    @Override
-    public String toString() {
-        return "Human{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", email='" + email + '\'' +
-                ", description='" + description + '\'' +
-                ", location='" + location +
-                '}';
+
+    public Set<String> getAuthorities() {
+        return authorities;
     }
+
+    public void setAuthorities(Set<String> authorities) {
+        this.authorities = authorities;
+    }
+
 }
