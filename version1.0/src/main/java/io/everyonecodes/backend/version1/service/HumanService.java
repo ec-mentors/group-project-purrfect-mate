@@ -16,7 +16,7 @@ public class HumanService {
     private final HumanRepository humanRepo;
     private final PasswordEncoder passwordEncoder;
 
-    @Value("${user.authorities}")
+    @Value("${credentials.user.authorities}")
     Set<String> userAuthorities;
 
     public HumanService(HumanRepository humanRepo, PasswordEncoder passwordEncoder) {
