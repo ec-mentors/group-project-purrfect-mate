@@ -1,10 +1,10 @@
-package io.everyonecodes.backend.version1.config;
+package purrfectmate.config;
 
-import io.everyonecodes.backend.version1.data.Human;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 
 import org.springframework.security.core.userdetails.UserDetails;
+import purrfectmate.data.Human;
 
 
 import java.util.Collection;
@@ -38,6 +38,10 @@ public class UserPrincipal implements UserDetails {
 
     public Long getUserId() {
         return human.getId();
+    }
+
+    public String getLocation() {
+        return human.getLocation();
     }
 
     @Override

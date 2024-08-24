@@ -1,5 +1,4 @@
-package io.everyonecodes.backend.version1.data;
-
+package purrfectmate.data;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import jakarta.persistence.*;

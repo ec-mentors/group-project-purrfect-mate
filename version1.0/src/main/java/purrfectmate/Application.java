@@ -1,4 +1,4 @@
-package io.everyonecodes.backend.version1;
+package purrfectmate;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

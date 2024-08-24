@@ -1,11 +1,15 @@
-package io.everyonecodes.backend.version1.endpoint;
+package purrfectmate.endpoint;
 
-import io.everyonecodes.backend.version1.config.SecurityService;
-import io.everyonecodes.backend.version1.data.Cat;
-import io.everyonecodes.backend.version1.service.CatService;
+
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import purrfectmate.config.SecurityService;
+import purrfectmate.config.UserPrincipal;
+import purrfectmate.data.Cat;
+import purrfectmate.service.CatService;
 
 import java.util.List;
 
@@ -27,10 +31,19 @@ public class CatEndpointSecured {
         return catService.findCatsByHumanId(humanId);
     }
 
-    @DeleteMapping()
-    @Secured("ROLE_ADMIN")
-    public String deleteAllCats() {
-        return catService.deleteAllCats();
+    @GetMapping()
+    @Secured("ROLE_USER")
+    public List<Cat> getCatsByLocation() {
+
+        // Retrieve the logged-in user's details
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserPrincipal userDetails = (UserPrincipal) authentication.getPrincipal();
+
+        // Get the user's location
+        String userLocation = userDetails.getLocation();
+
+        // Use the user's location to find cats only in that location
+        return catService.findCatsByLocation(userLocation);
     }
 
     @PostMapping("/{humanId}/addCat")
@@ -38,5 +51,11 @@ public class CatEndpointSecured {
     @Secured("ROLE_USER")
     public Cat addCat(@PathVariable Long humanId, @RequestBody Cat cat) {
         return catService.createCat(cat, humanId);
+    }
+
+    @DeleteMapping()
+    @Secured("ROLE_ADMIN")
+    public String deleteAllCats() {
+        return catService.deleteAllCats();
     }
 }

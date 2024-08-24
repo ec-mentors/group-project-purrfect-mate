@@ -1,8 +1,8 @@
-package io.everyonecodes.backend.version1.endpoint;
+package purrfectmate.endpoint;
 
-import io.everyonecodes.backend.version1.data.Cat;
-import io.everyonecodes.backend.version1.service.CatService;
+
 import org.springframework.web.bind.annotation.*;
+import purrfectmate.service.CatService;
 
 import java.util.List;
 
@@ -18,10 +18,10 @@ public class CatEndpoint {
         this.catService = catService;
     }
 
-    @GetMapping()
-    public List<Cat> getAllCats() {
-        return catService.getAllCats();
-    }
+//    @GetMapping()
+//    public List<Cat> getAllCats() {
+//        return catService.getAllCats();
+//    }
 
 
 

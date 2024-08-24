@@ -1,4 +1,4 @@
-package io.everyonecodes.backend.version1.config;
+package purrfectmate.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;

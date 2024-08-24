@@ -1,4 +1,4 @@
-package io.everyonecodes.backend.version1.config;
+package purrfectmate.config;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
