@@ -32,10 +32,6 @@ body {
     object-fit: cover;
 }
 
-.btn {
-    background-color: var(--primary) !important;
-}
-
 #readMore {
     display: none;
 }

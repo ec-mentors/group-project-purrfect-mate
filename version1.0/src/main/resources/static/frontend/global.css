@@ -38,16 +38,6 @@
     z-index: 1000;
 }
 
-.navbar {
-    z-index: 1000;
-    background-color: var(--primary);
-}
-
-.btn {
-    opacity: 1 !important;
-    color: black !important;
-}
-
 .nav-link{
     opacity: 1 !important;
     color: black !important;
@@ -60,6 +50,10 @@
 .hover-grow:hover {
 
     transform: scale(1.2);
+}
+
+.purr {
+    background-color: var(--primary) !important;
 }
 
 @media (min-width: 992px) {
