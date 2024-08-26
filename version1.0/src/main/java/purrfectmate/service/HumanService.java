@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import purrfectmate.data.Human;
+import purrfectmate.data.HumanDTO;
 import purrfectmate.repository.HumanRepository;
 
 import java.util.List;
@@ -33,11 +34,17 @@ public class HumanService {
         return humanRepo.findById(id);
     }
 
-    public Human createHuman(Human newHuman) {
-        String password = newHuman.getPassword();
+    public Human createHuman(HumanDTO inputHuman) {
+        String username = inputHuman.getUsername();
+        String email = inputHuman.getEmail();
+        String password = inputHuman.getPassword();
         String encryptedPassword = passwordEncoder.encode(password);
-        newHuman.setPassword(encryptedPassword);
+        String defaultLocation = "Austria";
+
+        Human newHuman = new Human(username, email, encryptedPassword, defaultLocation);
+
         newHuman.setAuthorities(userAuthorities);
+
         return humanRepo.save(newHuman);
     }
 
