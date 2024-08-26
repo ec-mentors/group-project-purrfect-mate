@@ -20,6 +20,7 @@ public class RegistrationEndpoint {
 
     @PostMapping()
     public Human addHuman(@RequestBody HumanDTO humanInputData) {
+        System.out.println("!!!Register Endpoint reached!!! Human: " + humanInputData);
         return service.createHuman(humanInputData);
     }
 }
