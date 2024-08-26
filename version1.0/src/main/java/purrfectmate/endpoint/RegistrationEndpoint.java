@@ -9,12 +9,12 @@ import purrfectmate.service.HumanService;
 
 
 @RestController
-@RequestMapping("/humans")
-public class HumanEndpoint {
+@RequestMapping("api/registration")
+public class RegistrationEndpoint {
 
     private final HumanService service;
 
-    public HumanEndpoint(HumanService service) {
+    public RegistrationEndpoint(HumanService service) {
         this.service = service;
     }
 
