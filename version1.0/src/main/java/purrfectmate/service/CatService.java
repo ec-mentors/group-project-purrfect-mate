@@ -1,10 +1,12 @@
-package io.everyonecodes.backend.version1.service;
+package purrfectmate.service;
 
-import io.everyonecodes.backend.version1.data.Cat;
-import io.everyonecodes.backend.version1.data.Human;
-import io.everyonecodes.backend.version1.repository.CatRepository;
-import io.everyonecodes.backend.version1.repository.HumanRepository;
+
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
+import purrfectmate.data.Cat;
+import purrfectmate.data.Human;
+import purrfectmate.repository.CatRepository;
+import purrfectmate.repository.HumanRepository;
 
 import java.util.List;
 
@@ -23,17 +25,20 @@ public class CatService {
         return catRepo.findAll();
     }
 
-    public List<Cat> findCatsByHumanId(long humanId) {
+    public List<Cat> findCatsByHumanId(Long humanId) {
         return catRepo.findCatsByHumanId(humanId);
     }
 
-    public Cat createCat(Cat cat) {
+    public List<Cat> findCatsByLocation(String location) {
+
+        return catRepo.findByLocation(location);
+    }
+
+    public Cat createCat(Cat cat, Long humanId) {
 
         // check if humanId in database
-        // Human human = humanRepo.findById(humanId).orElseThrow(EntityNotFoundException::new);
+        Human human = humanRepo.findById(humanId).orElseThrow(EntityNotFoundException::new);
 
-        Human human = cat.getHuman();
-        humanRepo.save(human);
         cat.setHuman(human);
         return catRepo.save(cat);
     }

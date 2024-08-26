@@ -6,7 +6,6 @@ document.getElementById('registration-form').onsubmit = function(event) {
         username: document.getElementById('input-username').value,
         email: document.getElementById('input-email').value,
         password: document.getElementById('input-password').value,
-        confirmPassword: document.getElementById('repeat-password').value
     });
 
     // Send the inputs to the server
@@ -23,4 +22,5 @@ document.getElementById('registration-form').onsubmit = function(event) {
             alert('There was a problem submitting the form.');
             console.error(error);
         });
+
 };
