@@ -12,13 +12,13 @@ public class Human {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;  // Use Long for numeric ID
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String username;
 
-    @Column()
+    @Column(nullable = false)
     private String email;
 
-    @Column()
+    @Column(nullable = false)
     private String password;
 
     @Column()
