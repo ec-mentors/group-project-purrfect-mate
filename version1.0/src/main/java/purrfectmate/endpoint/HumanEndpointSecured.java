@@ -3,7 +3,6 @@ package purrfectmate.endpoint;
 
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import purrfectmate.data.Human;
@@ -25,11 +24,5 @@ public class HumanEndpointSecured {
     @Secured("ROLE_ADMIN")
     public List<Human> getAllHumans() {
         return service.getAllHumans();
-
-    }
-
-    @GetMapping("/human/{id}")
-    public Human getHumanById(@PathVariable Long id) {
-        return service.getHumanById(id).orElse(null);
     }
 }
