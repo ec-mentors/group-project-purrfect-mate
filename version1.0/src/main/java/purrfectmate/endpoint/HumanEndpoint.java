@@ -4,6 +4,7 @@ package purrfectmate.endpoint;
 
 import org.springframework.web.bind.annotation.*;
 import purrfectmate.data.Human;
+import purrfectmate.data.HumanDTO;
 import purrfectmate.service.HumanService;
 
 import java.util.Optional;
@@ -20,8 +21,8 @@ public class HumanEndpoint {
     }
 
     @PostMapping()
-    public Human addHuman(@RequestBody Human human) {
-        return service.createHuman(human);
+    public Human addHuman(@RequestBody HumanDTO humanInputData) {
+        return service.createHuman(humanInputData);
     }
 
     @GetMapping("/human/{id}")
