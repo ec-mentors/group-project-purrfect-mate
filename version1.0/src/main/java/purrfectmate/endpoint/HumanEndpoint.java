@@ -6,12 +6,14 @@ import org.springframework.web.bind.annotation.*;
 import purrfectmate.data.Human;
 import purrfectmate.service.HumanService;
 
+import java.util.Optional;
+
 
 @RestController
 @RequestMapping("/humans")
 public class HumanEndpoint {
 
-    HumanService service;
+    private final HumanService service;
 
     public HumanEndpoint(HumanService service) {
         this.service = service;
@@ -20,5 +22,10 @@ public class HumanEndpoint {
     @PostMapping()
     public Human addHuman(@RequestBody Human human) {
         return service.createHuman(human);
+    }
+
+    @GetMapping("/human/{id}")
+    public Human getHumanById(@PathVariable Long id) {
+        return service.getHumanById(id).orElse(null);
     }
 }
