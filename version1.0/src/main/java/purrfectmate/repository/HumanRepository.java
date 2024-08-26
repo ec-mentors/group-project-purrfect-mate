@@ -1,7 +1,7 @@
-package io.everyonecodes.backend.version1.repository;
+package purrfectmate.repository;
 
-import io.everyonecodes.backend.version1.data.Human;
 import org.springframework.data.jpa.repository.JpaRepository;
+import purrfectmate.data.Human;
 
 import java.util.Optional;
 

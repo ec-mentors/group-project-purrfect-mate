@@ -1,9 +1,10 @@
-package io.everyonecodes.backend.version1.endpoint;
+package purrfectmate.endpoint;
 
 
-import io.everyonecodes.backend.version1.data.Human;
-import io.everyonecodes.backend.version1.service.HumanService;
+
 import org.springframework.web.bind.annotation.*;
+import purrfectmate.data.Human;
+import purrfectmate.service.HumanService;
 
 
 @RestController

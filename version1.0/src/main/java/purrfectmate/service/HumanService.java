@@ -1,10 +1,11 @@
-package io.everyonecodes.backend.version1.service;
+package purrfectmate.service;
 
-import io.everyonecodes.backend.version1.data.Human;
-import io.everyonecodes.backend.version1.repository.HumanRepository;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import purrfectmate.data.Human;
+import purrfectmate.repository.HumanRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,7 +17,7 @@ public class HumanService {
     private final HumanRepository humanRepo;
     private final PasswordEncoder passwordEncoder;
 
-    @Value("${user.authorities}")
+    @Value("${credentials.user.authorities}")
     Set<String> userAuthorities;
 
     public HumanService(HumanRepository humanRepo, PasswordEncoder passwordEncoder) {

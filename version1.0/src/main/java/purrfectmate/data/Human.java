@@ -1,4 +1,4 @@
-package io.everyonecodes.backend.version1.data;
+package purrfectmate.data;
 
 import jakarta.persistence.*;
 
