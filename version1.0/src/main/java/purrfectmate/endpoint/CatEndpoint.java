@@ -19,8 +19,8 @@ public class CatEndpoint {
         this.catService = catService;
     }
 
-    @GetMapping()
-    public List<Cat> getAllCats() {
-        return catService.getAllCats();
-    }
+//    @GetMapping()
+//    public List<Cat> getAllCats() {
+//        return catService.getAllCats();
+//    }
 }
