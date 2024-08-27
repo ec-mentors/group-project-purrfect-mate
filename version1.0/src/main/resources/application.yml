@@ -15,3 +15,8 @@ credentials:
         username: "admin"
     user:
         authorities: "ROLE_USER"
+logging:
+  level:
+      org:
+          springframework:
+              security: "DEBUG"
