@@ -30,7 +30,6 @@ public class CatService {
     }
 
     public List<Cat> findCatsByLocation(String location) {
-
         return catRepo.findByLocation(location);
     }
 
@@ -47,6 +46,4 @@ public class CatService {
         catRepo.deleteAll();
         return "All cats deleted";
     }
-
-
 }

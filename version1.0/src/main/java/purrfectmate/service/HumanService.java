@@ -19,7 +19,7 @@ public class HumanService {
     private final PasswordEncoder passwordEncoder;
 
     @Value("${credentials.user.authorities}")
-    private Set<String> userAuthorities;
+    Set<String> userAuthorities;
 
     public HumanService(HumanRepository humanRepo, PasswordEncoder passwordEncoder) {
         this.humanRepo = humanRepo;

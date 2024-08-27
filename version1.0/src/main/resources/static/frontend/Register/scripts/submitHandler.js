@@ -1,4 +1,5 @@
 document.getElementById('registration-form').onsubmit = function(event) {
+
     event.preventDefault(); // Stop the form from reloading the page
 
     const usernameString = document.getElementById('input-username').value;
@@ -6,27 +7,23 @@ document.getElementById('registration-form').onsubmit = function(event) {
     const passwordString = document.getElementById('input-password').value;
 
     // Get the values from the form inputs
-    const formData = JSON.stringify({
-
+    const formData = {
         username: usernameString,
         email: emailString,
         password: passwordString
+    };
 
-    });
+    console.log(JSON.stringify(formData));
 
     // Send the inputs to the server
     fetch('/api/registration', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: formData
+        body: JSON.stringify(formData)
     })
         .then(response => response.json()) // Get the JSON response from the server
-        .then(data => {
-            alert(data.message); // Show a simple message with the server's response
-        })
         .catch(error => {
-            alert('There was a problem submitting the form.');
             console.error(error);
+            alert('There was a problem submitting the form.');
         });
-
 };

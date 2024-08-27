@@ -7,8 +7,6 @@ import purrfectmate.data.Human;
 import purrfectmate.data.HumanDTO;
 import purrfectmate.service.HumanService;
 
-import java.util.Optional;
-
 
 @RestController
 @RequestMapping("/humans")
@@ -23,10 +21,5 @@ public class HumanEndpoint {
     @PostMapping()
     public Human addHuman(@RequestBody HumanDTO humanInputData) {
         return service.createHuman(humanInputData);
-    }
-
-    @GetMapping("/human/{id}")
-    public Human getHumanById(@PathVariable Long id) {
-        return service.getHumanById(id).orElse(null);
     }
 }
