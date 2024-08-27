@@ -1,7 +1,8 @@
 package purrfectmate.endpoint;
 
 
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import purrfectmate.service.CatService;
 
 import java.util.List;
@@ -22,7 +23,4 @@ public class CatEndpoint {
 //    public List<Cat> getAllCats() {
 //        return catService.getAllCats();
 //    }
-
-
-
 }
