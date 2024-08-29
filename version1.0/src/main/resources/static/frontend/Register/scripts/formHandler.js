@@ -1,4 +1,3 @@
-// formHandler.js
 import { validateForm, clearErrors, setupValidationListeners } from './validation.js';
 import { submitForm } from './api.js';
 

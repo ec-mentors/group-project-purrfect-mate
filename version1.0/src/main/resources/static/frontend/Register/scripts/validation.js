@@ -15,9 +15,13 @@ export function validateForm(username, email, password, repeatPassword) {
         isValid = false;
     }
 
-    // Password validation
-    if (password.length < 6) {
-        displayError('password-error', 'Password must be at least 6 characters long');
+    // Improved Password validation
+    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if (!passwordPattern.test(password)) {
+        displayError('password-error', 'Password must be at least 8 characters long and include uppercase, lowercase, number, and a special character');
+        isValid = false;
+    } else if (/\s/.test(password)) {
+        displayError('password-error', 'Password must not contain spaces');
         isValid = false;
     } else if (password === username) {
         displayError('password-error', 'Username and password must be different');
