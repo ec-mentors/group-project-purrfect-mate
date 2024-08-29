@@ -1,4 +1,4 @@
-package purrfectmate.endpoint;
+package purrfectmate.endpoint.Endpoint;
 
 
 import org.springframework.security.access.annotation.Secured;

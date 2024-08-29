@@ -16,6 +16,12 @@ document.getElementById('registration-form').onsubmit = function(event) {
     console.log(JSON.stringify(formData));
 
     // Send the inputs to the server
+    postRegistrationData(formData);
+};
+
+
+function postRegistrationData(formData) {
+
     fetch('/api/registration', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -26,4 +32,5 @@ document.getElementById('registration-form').onsubmit = function(event) {
             console.error(error);
             alert('There was a problem submitting the form.');
         });
-};
+
+}

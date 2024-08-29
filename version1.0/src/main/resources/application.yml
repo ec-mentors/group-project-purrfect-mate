@@ -3,7 +3,7 @@ server:
 spring:
     datasource:
         password: "${MYSQL_PASSWORD}"
-        url: "jdbc:mysql://localhost:3306/catsandhumans?useSSL=false"
+        url: "jdbc:mysql://localhost:3306/catsandhumans"
         username: "${MYSQL_USERNAME}"
     jpa:
         hibernate:

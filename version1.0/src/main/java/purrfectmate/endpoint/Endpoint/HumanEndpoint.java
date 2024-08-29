@@ -1,4 +1,4 @@
-package purrfectmate.endpoint;
+package purrfectmate.endpoint.Endpoint;
 
 
 
@@ -9,18 +9,17 @@ import purrfectmate.service.HumanService;
 
 
 @RestController
-@RequestMapping("api/registration")
-public class RegistrationEndpoint {
+@RequestMapping("/humans")
+public class HumanEndpoint {
 
     private final HumanService service;
 
-    public RegistrationEndpoint(HumanService service) {
+    public HumanEndpoint(HumanService service) {
         this.service = service;
     }
 
     @PostMapping()
     public Human addHuman(@RequestBody HumanDTO humanInputData) {
-        System.out.println("!!!Register Endpoint reached!!! Human: " + humanInputData);
         return service.createHuman(humanInputData);
     }
 }
