@@ -53,7 +53,7 @@
     <h3>Create new account</h3>
     <br>
 
-    <form id="registration-form">
+    <form id="registration-form" novalidate>
         <div class="form-group">
             <label for="input-username">
                 Username
@@ -103,8 +103,9 @@
 
 </div>
 
-
-<script src="frontend/Register/scripts/submitHandler.js"></script>
+<script type="module" src="frontend/Register/scripts/validation.js"></script>
+<script type="module" src="frontend/Register/scripts/api.js"></script>
+<script type="module" src="frontend/Register/scripts/formHandler.js"></script>
 <script src="/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
 <script>
     if (typeof bootstrap === 'undefined') {
