@@ -1,10 +1,8 @@
-package purrfectmate.endpoint;
+package purrfectmate.endpoint.Endpoint;
 
 
 import org.springframework.web.bind.annotation.*;
 import purrfectmate.service.CatService;
-
-import java.util.List;
 
 
 @RestController
