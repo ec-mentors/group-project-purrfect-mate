@@ -1,40 +1,66 @@
-// Function to validate the form fields
+// Function to validate the entire form fields
 export function validateForm(username, email, password, repeatPassword) {
     let isValid = true;
 
-    // Username validation
-    if (username === "") {
-        displayError('username-error', 'Username is required');
+    // Validate each field using dedicated functions
+    if (!validateUsername(username)) {
         isValid = false;
     }
-
-    // Email validation using a basic pattern
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailPattern.test(email)) {
-        displayError('email-error', 'Invalid email address');
+    if (!validateEmail(email)) {
         isValid = false;
     }
-
-    // Improved Password validation
-    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    if (!passwordPattern.test(password)) {
-        displayError('password-error', 'Password must be at least 8 characters long and include uppercase, lowercase, number, and a special character');
-        isValid = false;
-    } else if (/\s/.test(password)) {
-        displayError('password-error', 'Password must not contain spaces');
-        isValid = false;
-    } else if (password === username) {
-        displayError('password-error', 'Username and password must be different');
+    if (!validatePassword(password, username)) {
         isValid = false;
     }
-
-    // Confirm password validation
-    if (password !== repeatPassword) {
-        displayError('repeat-password-error', 'Passwords do not match');
+    if (!validateRepeatPassword(password, repeatPassword)) {
         isValid = false;
     }
 
     return isValid;
+}
+
+// Validate username
+function validateUsername(username) {
+    if (username === "") {
+        displayError('username-error', 'Username is required');
+        return false;
+    }
+    return true;
+}
+
+// Validate email using a basic pattern
+function validateEmail(email) {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+        displayError('email-error', 'Invalid email address');
+        return false;
+    }
+    return true;
+}
+
+// Validate password with specific requirements
+function validatePassword(password, username) {
+    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if (!passwordPattern.test(password)) {
+        displayError('password-error', 'Password must be at least 8 characters long and include uppercase, lowercase, number, and a special character');
+        return false;
+    } else if (/\s/.test(password)) {
+        displayError('password-error', 'Password must not contain spaces');
+        return false;
+    } else if (password === username) {
+        displayError('password-error', 'Username and password must be different');
+        return false;
+    }
+    return true;
+}
+
+// Validate repeat password to match the password
+function validateRepeatPassword(password, repeatPassword) {
+    if (password !== repeatPassword) {
+        displayError('repeat-password-error', 'Passwords do not match');
+        return false;
+    }
+    return true;
 }
 
 // Function to display error messages
@@ -56,10 +82,10 @@ export function setupValidationListeners() {
     const passwordElement = document.getElementById('input-password');
     const repeatPasswordElement = document.getElementById('repeat-password');
 
-    usernameElement.addEventListener('input', () => clearErrorsOnInput('username-error', usernameElement.value.trim() !== ""));
-    emailElement.addEventListener('input', () => clearErrorsOnInput('email-error', /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailElement.value)));
-    passwordElement.addEventListener('input', () => clearErrorsOnInput('password-error', passwordElement.value.length >= 6));
-    repeatPasswordElement.addEventListener('input', () => clearErrorsOnInput('repeat-password-error', repeatPasswordElement.value === passwordElement.value));
+    usernameElement.addEventListener('input', () => clearErrorsOnInput('username-error', validateUsername(usernameElement.value.trim())));
+    emailElement.addEventListener('input', () => clearErrorsOnInput('email-error', validateEmail(emailElement.value)));
+    passwordElement.addEventListener('input', () => clearErrorsOnInput('password-error', validatePassword(passwordElement.value, usernameElement.value)));
+    repeatPasswordElement.addEventListener('input', () => clearErrorsOnInput('repeat-password-error', validateRepeatPassword(passwordElement.value, repeatPasswordElement.value)));
 }
 
 // Helper to clear specific error on valid input

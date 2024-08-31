@@ -1,4 +1,4 @@
-package purrfectmate.endpoint.Endpoint;
+package purrfectmate.Controllers.REST;
 
 
 import org.springframework.web.bind.annotation.*;

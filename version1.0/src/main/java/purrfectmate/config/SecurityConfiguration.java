@@ -43,8 +43,7 @@ public class SecurityConfiguration {
         http.cors(AbstractHttpConfigurer::disable)
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/humans").permitAll()
-                        .requestMatchers("/register").permitAll()
+                        .requestMatchers("/humans", "/home", "/catProfile", "/register", "login").permitAll()
                         .requestMatchers("/cats").hasAnyRole("ADMIN", "USER")
                         .anyRequest().authenticated()
                 )
@@ -63,8 +62,8 @@ public class SecurityConfiguration {
 
         return username -> humanRepository.findByUsername(username)
                 .map(UserPrincipal::new)
-                .orElseThrow(() ->
-                        new UsernameNotFoundException(username));
+                .orElseThrow(
+                        () -> new UsernameNotFoundException(username));
     }
 
 
