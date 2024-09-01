@@ -1,7 +1,7 @@
-package purrfectmate.repository;
+package purrfectmate.data.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import purrfectmate.data.Human;
+import purrfectmate.data.entity.Human;
 
 import java.util.Optional;
 

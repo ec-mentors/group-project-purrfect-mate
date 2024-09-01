@@ -3,10 +3,10 @@ package purrfectmate.service;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
-import purrfectmate.data.Cat;
-import purrfectmate.data.Human;
-import purrfectmate.repository.CatRepository;
-import purrfectmate.repository.HumanRepository;
+import purrfectmate.data.entity.Cat;
+import purrfectmate.data.entity.Human;
+import purrfectmate.data.repository.CatRepository;
+import purrfectmate.data.repository.HumanRepository;
 
 import java.util.List;
 

@@ -9,10 +9,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import purrfectmate.config.SecurityConfiguration;
-import purrfectmate.data.Cat;
-import purrfectmate.data.Human;
-import purrfectmate.repository.CatRepository;
-import purrfectmate.repository.HumanRepository;
+import purrfectmate.data.entity.Cat;
+import purrfectmate.data.entity.Human;
+import purrfectmate.data.repository.CatRepository;
+import purrfectmate.data.repository.HumanRepository;
 
 import java.util.List;
 

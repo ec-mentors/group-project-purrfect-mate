@@ -1,4 +1,4 @@
-package purrfectmate.endpoint.Endpoint;
+package purrfectmate.controllers.rest;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;
