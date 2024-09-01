@@ -23,7 +23,7 @@ public class UserPrincipal implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
         Set<String> authorities = human.getAuthorities();
-        return AuthorityUtils.createAuthorityList(authorities.toArray(new String[authorities.size()]));
+        return AuthorityUtils.createAuthorityList(authorities.toArray(new String[0]));
     }
 
     @Override

@@ -1,5 +1,5 @@
-//Read more - button functionality
 
+// read more button
 const allDiv = document.getElementById("all");
 const readMoreDiv = document.getElementById("readMore")
 
