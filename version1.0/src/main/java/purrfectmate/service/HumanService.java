@@ -67,10 +67,10 @@ public class HumanService {
             if (passwordEncoder.matches(loginDTO.getPassword(), human.get().getPassword())) {
                 return human.get();
             }
-                throw new WrongLoginDataException();
+            throw new WrongLoginDataException();
         }
 
-
+        return null;
 
     }
 }

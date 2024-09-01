@@ -28,7 +28,7 @@ public class LoginEndpointSecured {
         try {
             Human human = humanService.loginHuman(loginDTO);
             return ResponseEntity.status(HttpStatus.OK).body(human);
-        }catch (WrongLoginDataException e) {
+        } catch (WrongLoginDataException e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
         }

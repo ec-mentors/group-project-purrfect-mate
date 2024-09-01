@@ -6,7 +6,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-import purrfectmate.config.SecurityService;
 import purrfectmate.config.UserPrincipal;
 import purrfectmate.data.entity.Cat;
 import purrfectmate.service.CatService;
@@ -18,11 +17,9 @@ import java.util.List;
 public class CatEndpointSecured {
 
     private final CatService catService;
-    private final SecurityService securityService;
 
-    public CatEndpointSecured(CatService catService, SecurityService securityService) {
+    public CatEndpointSecured(CatService catService) {
         this.catService = catService;
-        this.securityService = securityService;
     }
 
     @GetMapping("/{humanId}")
@@ -47,7 +44,7 @@ public class CatEndpointSecured {
     }
 
     @PostMapping("/{humanId}/addCat")
-    @PreAuthorize("@securityService.hasUserId(#humanId)")
+    @PreAuthorize("#humanId == authentication.principal.userId")
     @Secured("ROLE_USER")
     public Cat addCat(@PathVariable Long humanId, @RequestBody Cat cat) {
         return catService.createCat(cat, humanId);
