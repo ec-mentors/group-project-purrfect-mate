@@ -45,8 +45,7 @@ public class HumanService {
         else if (humanRepo.existsByEmail(inputHuman.getEmail())) {
             throw new EmailAlreadyRegisteredException();
         }
-
-
+        
         String username = inputHuman.getUsername();
         String email = inputHuman.getEmail();
         String password = inputHuman.getPassword();
