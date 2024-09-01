@@ -7,9 +7,13 @@ document.getElementById('login-form').onsubmit = async function (event) {
     const password = document.getElementById("input-password").value.trim();
 
     const loginData = {
+        
         userName,
         password
+
     }
+
+    console.log(JSON.stringify(loginData));
 
     await postLoginData(loginData);
 
@@ -37,7 +41,7 @@ async function postLoginData(loginData) {
         alert('Login successful: ' + data);
         // Additional success logic can go here
     } catch (error) {
-        console.error('Error:', error.message); // Log any error that occurs
+        console.error('Error:', error); // Log any error that occurs
     }
 
     function displayError(elementId, message) {

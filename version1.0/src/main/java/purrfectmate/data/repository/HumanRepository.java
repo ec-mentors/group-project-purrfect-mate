@@ -5,7 +5,6 @@ import purrfectmate.data.entity.Human;
 
 import java.util.Optional;
 
-
 public interface HumanRepository extends JpaRepository<Human, Long> {
 
     public Optional<Human> findByUsername(String username);

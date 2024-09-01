@@ -25,6 +25,8 @@ public class LoginEndpointSecured {
     @PostMapping()
     public ResponseEntity<?> loginHuman(@RequestBody LoginDTO loginDTO) {
 
+        System.out.println(loginDTO.getUsername());
+
         try {
             Human human = humanService.loginHuman(loginDTO);
             return ResponseEntity.status(HttpStatus.OK).body(human);
