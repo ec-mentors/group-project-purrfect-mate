@@ -54,16 +54,27 @@ class CatServiceTest {
 
     @Test
     void findCatsByHumanId() {
-
+        Long id = human.getId();
+        Mockito.when(catRepository.findCatsByHumanId(id)).thenReturn(cats);
+        List<Cat> result = catService.findCatsByHumanId(id);
+        assertEquals(cats, result);
+        assertNotNull(result);
+        Mockito.verify(catRepository).findCatsByHumanId(id);
     }
 
     @Test
     void findCatsByLocation() {
-
+        String location = "location";
+        Mockito.when(catRepository.findByLocation(location)).thenReturn(cats);
+        List<Cat> result = catService.findCatsByLocation(location);
+        assertEquals(cats, result);
+        assertNotNull(result);
+        Mockito.verify(catRepository).findByLocation(location);
     }
 
     @Test
     void createCat() {
+
     }
 
     @Test
