@@ -21,7 +21,11 @@ document.getElementById('registration-form').onsubmit = async function (event) {
     }
 
     // Prepare form data
-    const formData = { username, email, password };
+    const formData = {
+        username,
+        email,
+        password
+    };
 
     try {
         // Make the API request and handle response
