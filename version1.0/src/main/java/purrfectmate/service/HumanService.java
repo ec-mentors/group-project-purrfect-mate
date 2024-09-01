@@ -3,11 +3,11 @@ package purrfectmate.service;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import purrfectmate.Exceptions.EmailAlreadyRegisteredException;
-import purrfectmate.Exceptions.UsernameAlreadyTakenException;
-import purrfectmate.data.Human;
-import purrfectmate.data.HumanDTO;
-import purrfectmate.repository.HumanRepository;
+import purrfectmate.exceptions.EmailAlreadyRegisteredException;
+import purrfectmate.exceptions.UsernameAlreadyTakenException;
+import purrfectmate.data.entity.Human;
+import purrfectmate.data.dto.HumanDTO;
+import purrfectmate.data.repository.HumanRepository;
 
 import java.util.List;
 import java.util.Optional;

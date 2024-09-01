@@ -1,4 +1,4 @@
-package purrfectmate.Exceptions;
+package purrfectmate.exceptions;
 
 public class UsernameAlreadyTakenException extends RuntimeException {
 

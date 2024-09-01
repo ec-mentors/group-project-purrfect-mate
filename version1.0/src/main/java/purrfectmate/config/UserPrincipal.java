@@ -4,7 +4,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 
 import org.springframework.security.core.userdetails.UserDetails;
-import purrfectmate.data.Human;
+import purrfectmate.data.entity.Human;
 
 
 import java.util.Collection;

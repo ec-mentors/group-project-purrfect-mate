@@ -1,7 +1,8 @@
-package purrfectmate.data;
+package purrfectmate.data.entity;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import jakarta.persistence.*;
+import purrfectmate.data.Gender;
 
 import java.util.List;
 

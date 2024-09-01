@@ -1,12 +1,12 @@
-package purrfectmate.endpoint.Endpoint;
+package purrfectmate.controllers.rest;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import purrfectmate.Exceptions.EmailAlreadyRegisteredException;
-import purrfectmate.Exceptions.UsernameAlreadyTakenException;
-import purrfectmate.data.Human;
-import purrfectmate.data.HumanDTO;
+import purrfectmate.exceptions.EmailAlreadyRegisteredException;
+import purrfectmate.exceptions.UsernameAlreadyTakenException;
+import purrfectmate.data.entity.Human;
+import purrfectmate.data.dto.HumanDTO;
 import purrfectmate.service.HumanService;
 
 @RestController
