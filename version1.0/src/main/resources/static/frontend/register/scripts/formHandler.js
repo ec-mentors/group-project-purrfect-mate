@@ -39,7 +39,6 @@ document.getElementById('registration-form').onsubmit = async function (event) {
         if (!response.ok) {
             const errorMessage = await response.text();
             handleError(errorMessage);
-            throw new Error(errorMessage);
         }
 
         // Handle successful response

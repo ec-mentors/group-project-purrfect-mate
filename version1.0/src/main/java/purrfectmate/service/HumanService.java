@@ -9,6 +9,7 @@ import purrfectmate.exceptions.UsernameAlreadyTakenException;
 import purrfectmate.data.entity.Human;
 import purrfectmate.data.dto.RegisterDTO;
 import purrfectmate.data.repository.HumanRepository;
+import purrfectmate.exceptions.WrongLoginDataException;
 
 import java.util.List;
 import java.util.Optional;
@@ -58,17 +59,18 @@ public class HumanService {
         return humanRepo.save(newHuman);
     }
 
-    public String loginHuman(LoginDTO loginDTO) {
+    public Human loginHuman(LoginDTO loginDTO) {
 
         Optional<Human> human = humanRepo.findByUsername(loginDTO.getUsername());
 
         if (human.isPresent()) {
             if (passwordEncoder.matches(loginDTO.getPassword(), human.get().getPassword())) {
-                return String.format(human.get().getUsername() + " logged in successfully");
+                return human.get();
             }
-            return String.format(human.get().getUsername() + " provided wrong password");
+                throw new WrongLoginDataException();
         }
 
-        return "User not found in database";
+
+
     }
 }
