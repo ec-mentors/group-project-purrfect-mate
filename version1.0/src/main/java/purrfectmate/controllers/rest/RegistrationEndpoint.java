@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import purrfectmate.exceptions.EmailAlreadyRegisteredException;
 import purrfectmate.exceptions.UsernameAlreadyTakenException;
 import purrfectmate.data.entity.Human;
-import purrfectmate.data.dto.HumanDTO;
+import purrfectmate.data.dto.RegisterDTO;
 import purrfectmate.service.HumanService;
 
 @RestController
@@ -20,7 +20,7 @@ public class RegistrationEndpoint {
     }
 
     @PostMapping()
-    public ResponseEntity<?> addHuman(@RequestBody HumanDTO humanInputData) {
+    public ResponseEntity<?> addHuman(@RequestBody RegisterDTO humanInputData) {
 
         try {
             Human newHuman = service.createHuman(humanInputData);

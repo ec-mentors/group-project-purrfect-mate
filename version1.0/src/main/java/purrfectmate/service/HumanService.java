@@ -3,10 +3,11 @@ package purrfectmate.service;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import purrfectmate.data.dto.LoginDTO;
 import purrfectmate.exceptions.EmailAlreadyRegisteredException;
 import purrfectmate.exceptions.UsernameAlreadyTakenException;
 import purrfectmate.data.entity.Human;
-import purrfectmate.data.dto.HumanDTO;
+import purrfectmate.data.dto.RegisterDTO;
 import purrfectmate.data.repository.HumanRepository;
 
 import java.util.List;
@@ -35,7 +36,7 @@ public class HumanService {
         return humanRepo.findById(id);
     }
 
-    public Human createHuman(HumanDTO inputHuman) {
+    public Human createHuman(RegisterDTO inputHuman) {
 
         if (humanRepo.existsByUsername(inputHuman.getUsername())) {
             throw new UsernameAlreadyTakenException();
@@ -55,5 +56,19 @@ public class HumanService {
         newHuman.setAuthorities(userAuthorities);
 
         return humanRepo.save(newHuman);
+    }
+
+    public String loginHuman(LoginDTO loginDTO) {
+
+        Optional<Human> human = humanRepo.findByUsername(loginDTO.getUsername());
+
+        if (human.isPresent()) {
+            if (passwordEncoder.matches(loginDTO.getPassword(), human.get().getPassword())) {
+                return String.format(human.get().getUsername() + " logged in successfully");
+            }
+            return String.format(human.get().getUsername() + " provided wrong password");
+        }
+
+        return "User not found in database";
     }
 }
