@@ -61,16 +61,16 @@ public class HumanService {
 
     public Human loginHuman(LoginDTO loginDTO) {
 
+        System.out.println(loginDTO.getUsername());
+
         Optional<Human> human = humanRepo.findByUsername(loginDTO.getUsername());
 
         if (human.isPresent()) {
-            if (passwordEncoder.matches(loginDTO.getPassword(), human.get().getPassword())) {
-                return human.get();
-            }
-            throw new WrongLoginDataException();
+
+            return human.get();
+
         }
 
-        return null;
-
+        throw new WrongLoginDataException();
     }
 }
