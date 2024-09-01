@@ -1,4 +1,4 @@
-package purrfectmate.Controllers.REST;
+package purrfectmate.controllers.rest;
 
 
 import org.springframework.security.access.annotation.Secured;
@@ -8,7 +8,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import purrfectmate.config.SecurityService;
 import purrfectmate.config.UserPrincipal;
-import purrfectmate.data.Cat;
+import purrfectmate.data.entity.Cat;
 import purrfectmate.service.CatService;
 
 import java.util.List;

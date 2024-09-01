@@ -1,4 +1,4 @@
-package purrfectmate.Exceptions;
+package purrfectmate.exceptions;
 
 public class EmailAlreadyRegisteredException extends RuntimeException {
 

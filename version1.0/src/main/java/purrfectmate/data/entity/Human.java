@@ -1,4 +1,4 @@
-package purrfectmate.data;
+package purrfectmate.data.entity;
 
 import jakarta.persistence.*;
 

@@ -2,9 +2,9 @@ server:
     port: 9000
 spring:
     datasource:
+        username: "${MYSQL_USERNAME}"
         password: "${MYSQL_PASSWORD}"
         url: "jdbc:mysql://localhost:3306/catsandhumans"
-        username: "${MYSQL_USERNAME}"
     jpa:
         hibernate:
             ddl-auto: "update"

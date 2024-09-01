@@ -1,10 +1,10 @@
-package purrfectmate.Controllers.REST;
+package purrfectmate.controllers.rest;
 
 
 
 import org.springframework.web.bind.annotation.*;
-import purrfectmate.data.Human;
-import purrfectmate.data.HumanDTO;
+import purrfectmate.data.entity.Human;
+import purrfectmate.data.dto.HumanDTO;
 import purrfectmate.service.HumanService;
 
 
