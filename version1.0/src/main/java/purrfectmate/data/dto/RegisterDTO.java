@@ -1,16 +1,16 @@
 package purrfectmate.data.dto;
 
-public class HumanDTO {
+public class RegisterDTO {
 
     private String username;
     private String email;
     private String password;
 
 
-    public HumanDTO() {
+    public RegisterDTO() {
     }
 
-    public HumanDTO(String username, String email, String password) {
+    public RegisterDTO(String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;
