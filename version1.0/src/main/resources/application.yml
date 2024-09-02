@@ -1,21 +1,39 @@
+# Server configuration
 server:
-    port: 9000
+    port: 9000  # The port on which the server will run. Change this to adjust the server's listening port.
+
+# Spring configuration
 spring:
     datasource:
-        username: "${MYSQL_USERNAME}"
-        password: "${MYSQL_PASSWORD}"
-        url: "jdbc:mysql://localhost:3306/catsandhumans"
+        # Database connection configuration (MySQL)
+        username: "${MYSQL_USERNAME}"  # Database username, retrieved from environment variable MYSQL_USERNAME
+        password: "${MYSQL_PASSWORD}"  # Database password, retrieved from environment variable MYSQL_PASSWORD
+        url: "jdbc:mysql://localhost:3306/catsandhumans"  # Database URL, specifying the MySQL server location and database name
+
+    # JPA (Java Persistence API) configuration, managing the interaction between Java application and the database.
     jpa:
         hibernate:
-            ddl-auto: "update"
+            ddl-auto: "update"  # Specifies the action taken for database schema management, "update" keeps the schema updated without losing data
+
+# Custom application credentials configuration
 credentials:
     admin:
-        authorities: "ROLE_ADMIN"
-        password: "admin"
-        username: "admin"
+        # Admin user configuration (Set environment variables to create the admin on startup)
+        authorities: "ROLE_ADMIN"  # Assigns admin role
+        username: "${PURR_NAME}"   # Username from PURR_NAME environment variable
+        password: "${PURR_PASSWORD}"  # Password from PURR_PASSWORD environment variable
     user:
-        authorities: "ROLE_USER"
+        # Standard user configuration
+        authorities: "ROLE_USER"  # Assigns the ROLE_USER authority to the regular user
+
 logging:
-  level:
-      org:
-          springframework:
+    level:
+        org:
+            springframework:
+            # security: "DEBUG"    # Use for debugging authentication and authorization issues.
+            # web: "DEBUG"         # Use to debug request/response handling, especially for web endpoints.
+            # data: "DEBUG"        # Use to monitor JPA repositories and database queries.
+            # orm: "DEBUG"         # Use for debugging JPA/Hibernate entity management.
+            # jdbc: "DEBUG"        # Use to see detailed SQL execution and database interactions.
+            # core: "DEBUG"        # Use for general Spring functionality, bean processing.
+            # context: "DEBUG"     # Use to debug application context initialization and bean management.
