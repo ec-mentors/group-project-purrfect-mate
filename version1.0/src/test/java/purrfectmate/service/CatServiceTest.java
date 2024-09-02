@@ -1,5 +1,7 @@
 package purrfectmate.service;
 
+import jakarta.persistence.EntityNotFoundException;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import purrfectmate.data.repository.CatRepository;
 import purrfectmate.data.repository.HumanRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -73,11 +76,42 @@ class CatServiceTest {
     }
 
     @Test
-    void createCat() {
+    void createCatHumanFound() {
+        Cat cat = new Cat();
+        Long id = human.getId();
 
+        Mockito.when(humanRepository.findById(id)).thenReturn(Optional.of(human));
+        cat.setHuman(human);
+        Mockito.when(catRepository.save(cat)).thenReturn(cat);
+
+        Cat result = catService.createCat(cat, id);
+        assertEquals(cat, result);
+
+        Mockito.verify(humanRepository).findById(id);
+        Mockito.verify(catRepository).save(cat);
+    }
+
+    @Test
+    void createCatHumanNotFound() {
+        Cat cat = new Cat();
+        Long idThatIsNotAssignedToAnyHuman = 1L;
+
+        Mockito.when(humanRepository.findById(idThatIsNotAssignedToAnyHuman)).thenReturn(Optional.empty());
+
+        assertThrows(EntityNotFoundException.class, () -> {
+            catService.createCat(cat, idThatIsNotAssignedToAnyHuman);
+        });
+
+        Mockito.verify(humanRepository).findById(idThatIsNotAssignedToAnyHuman);
+        Mockito.verify(catRepository, Mockito.times(0)).save(cat);
     }
 
     @Test
     void deleteAllCats() {
+        String deleted = "All cats deleted";
+        String result = catService.deleteAllCats();
+
+        Assertions.assertEquals(deleted, result);
+        Mockito.verify(catRepository).deleteAll();
     }
 }
