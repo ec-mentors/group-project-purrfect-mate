@@ -2,23 +2,23 @@ package purrfectmate.data.dto;
 
 public class LoginDTO {
 
-    private String username;
+    private String userName;
     private String password;
 
     public LoginDTO() {
     }
 
-    public LoginDTO(String username, String password) {
-        this.username = username;
+    public LoginDTO(String userName, String password) {
+        this.userName = userName;
         this.password = password;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
@@ -27,5 +27,13 @@ public class LoginDTO {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "LoginDTO{" +
+                "userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

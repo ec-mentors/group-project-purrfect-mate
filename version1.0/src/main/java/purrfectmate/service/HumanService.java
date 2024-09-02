@@ -60,9 +60,9 @@ public class HumanService {
 
     public Human loginHuman(LoginDTO loginDTO) {
 
-        System.out.println(loginDTO.getUsername());
+        System.out.println(loginDTO.getUserName());
 
-        Optional<Human> human = humanRepo.findByUsername(loginDTO.getUsername());
+        Optional<Human> human = humanRepo.findByUsername(loginDTO.getUserName());
 
         if (human.isPresent()) {
 

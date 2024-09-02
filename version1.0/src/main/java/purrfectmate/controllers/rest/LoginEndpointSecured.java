@@ -25,13 +25,12 @@ public class LoginEndpointSecured {
     @PostMapping()
     public ResponseEntity<?> loginHuman(@RequestBody LoginDTO loginDTO) {
 
-        System.out.println(loginDTO.getUsername());
-
+        System.out.println("Trying to log in: " + loginDTO.toString());
         try {
             Human human = humanService.loginHuman(loginDTO);
             return ResponseEntity.status(HttpStatus.OK).body(human);
         } catch (WrongLoginDataException e) {
-            e.printStackTrace();
+            System.out.println("Wrong login data");
             return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
         }
         

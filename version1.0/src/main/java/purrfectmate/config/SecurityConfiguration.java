@@ -1,12 +1,10 @@
 package purrfectmate.config;
 
-
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -21,7 +19,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import purrfectmate.data.repository.HumanRepository;
-
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -43,11 +40,15 @@ public class SecurityConfiguration {
         http.cors(AbstractHttpConfigurer::disable)
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/humans", "/home", "/catProfile", "/api/registration", "/register", "api/login", "/login", "frontend/login/login.html").permitAll()
+                        .requestMatchers("/humans", "/home", "/catProfile", "/api/registration", "/register", "api/login", "/login").permitAll()
+                        .requestMatchers("/frontend/**").permitAll()  // Allow access to static resources
                         .requestMatchers("/cats").hasAnyRole("ADMIN", "USER")
                         .anyRequest().authenticated()
                 )
-                .httpBasic(withDefaults());
+                .httpBasic(httpBasic -> httpBasic.authenticationEntryPoint((request, response, authException) -> {
+                    // Prevents the basic auth prompt by setting a custom response
+                    response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized Access");
+                }));
 
         return http.build();
     }
@@ -58,50 +59,39 @@ public class SecurityConfiguration {
     }
 
     @Bean
-    UserDetailsService userDetailsService(HumanRepository humanRepository) {
-
-        return username -> humanRepository.findByUsername(username)
-                .map(UserPrincipal::new)
-                .orElseThrow(
-                        () -> new UsernameNotFoundException(username));
-    }
-
-
-    // in-memory security configuration for admin
-    @Bean
-    public UserDetailsService adminDetailsService() {
+    public UserDetailsService userDetailsService(HumanRepository humanRepository, PasswordEncoder passwordEncoder) {
+        // Define the in-memory admin user details
         UserDetails admin = User.withUsername(adminUsername)
-                .password(passwordEncoder().encode(adminPassword))
+                .password(passwordEncoder.encode(adminPassword))
                 .authorities(adminAuthorities)
                 .build();
 
-        return new InMemoryUserDetailsManager(admin);
+        // Create an instance of InMemoryUserDetailsManager for the admin user
+        InMemoryUserDetailsManager inMemoryUserDetailsManager = new InMemoryUserDetailsManager(admin);
+
+        return username -> {
+            // First, try to load the admin user from the in-memory manager
+            try {
+                UserDetails inMemoryUser = inMemoryUserDetailsManager.loadUserByUsername(username);
+                if (inMemoryUser != null) {
+                    return inMemoryUser;
+                }
+            } catch (UsernameNotFoundException e) {
+                // Ignore and proceed to check the database
+            }
+
+            // If not found in memory, try to find the user in the HumanRepository
+            return humanRepository.findByUsername(username)
+                    .map(UserPrincipal::new)
+                    .orElseThrow(() -> new UsernameNotFoundException(username));
+        };
     }
 
     @Bean
-    public DaoAuthenticationProvider adminAuthenticationProvider() {
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(adminDetailsService());
-        authProvider.setPasswordEncoder(passwordEncoder());
-        return authProvider;
-    }
-
-    @Bean
-    public DaoAuthenticationProvider userAuthenticationProvider(UserDetailsService userDetailsService) {
+    public DaoAuthenticationProvider userAuthenticationProvider(UserDetailsService userDetailsService, PasswordEncoder passwordEncoder) {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userDetailsService);
-        authProvider.setPasswordEncoder(passwordEncoder());
+        authProvider.setPasswordEncoder(passwordEncoder);
         return authProvider;
-    }
-
-    @Bean
-    public AuthenticationManager authenticationManager(HttpSecurity http, HumanRepository humanRepository) throws Exception {
-        AuthenticationManagerBuilder auth = http.getSharedObject(AuthenticationManagerBuilder.class);
-
-        // Register custom authentication providers
-        auth.authenticationProvider(adminAuthenticationProvider());
-        auth.authenticationProvider(userAuthenticationProvider(userDetailsService(humanRepository)));
-
-        return auth.build();
     }
 }
