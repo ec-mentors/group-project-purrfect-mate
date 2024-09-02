@@ -27,7 +27,7 @@ async function postLoginData(userNameString, passwordString) {
         password: passwordString
     });
 
-    console.log("Request body:", body); // Add this line for debugging
+    console.log("Attempting login with: ", body);
 
     return fetch('/api/login', {
         method: 'POST',
