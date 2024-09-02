@@ -64,7 +64,7 @@ public class HumanService {
 
         Optional<Human> human = humanRepo.findByUsername(loginDTO.getUserName());
 
-        if (human.isPresent()) {
+        if (human.isPresent() && passwordEncoder.matches(loginDTO.getPassword(), human.get().getPassword())) {
 
             return human.get();
 
