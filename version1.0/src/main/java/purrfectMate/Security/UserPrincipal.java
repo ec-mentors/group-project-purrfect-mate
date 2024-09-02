@@ -1,4 +1,4 @@
-package purrfectMate.data.dto;
+package purrfectMate.Security;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;

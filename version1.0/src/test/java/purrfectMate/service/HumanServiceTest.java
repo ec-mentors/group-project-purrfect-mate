@@ -9,7 +9,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import purrfectMate.config.SecurityConfiguration;
+import purrfectMate.Security.SecurityConfiguration;
 import purrfectMate.data.dto.RegisterDTO;
 import purrfectMate.data.entity.User;
 import purrfectMate.data.repository.UserRepository;

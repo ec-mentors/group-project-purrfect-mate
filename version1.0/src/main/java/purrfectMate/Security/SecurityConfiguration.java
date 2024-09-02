@@ -1,4 +1,4 @@
-package purrfectMate.config;
+package purrfectMate.Security;
 
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,7 +18,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import purrfectMate.data.dto.UserPrincipal;
 import purrfectMate.data.repository.UserRepository;
 
 @Configuration
