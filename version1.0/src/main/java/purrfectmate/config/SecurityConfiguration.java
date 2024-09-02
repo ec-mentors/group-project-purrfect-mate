@@ -43,7 +43,7 @@ public class SecurityConfiguration {
         http.cors(AbstractHttpConfigurer::disable)
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/humans", "/home", "/catProfile", "/api/registration", "/register", "api/login", "/login").permitAll()
+                        .requestMatchers("/humans", "/home", "/catProfile", "/api/registration", "/register", "api/login", "/login", "frontend/login/login.html").permitAll()
                         .requestMatchers("/cats").hasAnyRole("ADMIN", "USER")
                         .anyRequest().authenticated()
                 )

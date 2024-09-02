@@ -1,61 +1,67 @@
-
 document.getElementById('login-form').onsubmit = async function (event) {
 
     event.preventDefault();
 
-    const userName = document.getElementById("input-username").value.trim();
-    const password = document.getElementById("input-password").value.trim();
+    const userName = getInputValue("input-username");
+    const password = getInputValue("input-password");
 
-    const loginData = {
-        
-        userName,
-        password
+    await handleLogin(userName, password);
+}
 
-    }
+function getInputValue(elementId) {
 
-    console.log(JSON.stringify(loginData));
-
-    await postLoginData(loginData);
+    return document.getElementById(elementId).value.trim();
 
 }
 
-async function postLoginData(loginData) {
+async function handleLogin(username, password) {
 
     try {
-        // Make the API request and handle response
-        const response = await fetch('/api/login', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(loginData),
-        });
 
-        // Check if response is not ok, and handle errors
-        if (!response.ok) {
-            const errorMessage = await response.text();
-            handleError(errorMessage);
-        }
+        const response = await postLoginData(username, password);
+        await processResponse(response);
 
-        // Handle successful response
-        const data = await response.json();
-        console.log("Successfully logged in!")
-        alert('Login successful: ' + data);
-        // Additional success logic can go here
     } catch (error) {
-        console.error('Error:', error); // Log any error that occurs
-    }
 
-    function displayError(elementId, message) {
-        document.getElementById(elementId).textContent = message;
-    }
+        console.error('Error:', error);
 
-    function handleError(errorMessage) {
-        switch (errorMessage) {
-            case "Username or password is incorrect":
-                displayError('username-error', errorMessage);
-                break;
-            default:
-                console.error('Unexpected error:', errorMessage);
-                break;
-        }
     }
+}
+
+async function postLoginData(userName, password) {
+
+    return fetch('/api/login', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: JSON.stringify(
+            userName,
+            password
+        ),
+        redirect: "follow"
+    });
+}
+
+async function processResponse(response) {
+    if (!response.ok) {
+        const errorMessage = await response.text();
+        displayErrorMessage(errorMessage);
+        return;
+    }
+    const data = await response.json();
+    alert('Login successful: ' + data);
+    console.log("Successfully logged in!");
+}
+
+function displayErrorMessage(errorMessage) {
+    switch (errorMessage) {
+        case "Username or password is incorrect":
+            displayError('username-error', errorMessage);
+            break;
+        default:
+            console.error('Unexpected error:', errorMessage);
+    }
+}
+
+function displayError(elementId, message) {
+    document.getElementById(elementId).textContent = message;
 }
