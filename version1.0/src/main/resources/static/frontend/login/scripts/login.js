@@ -21,14 +21,18 @@ async function handleLogin(username, password) {
 }
 
 async function postLoginData(userNameString, passwordString) {
-    // Corrected to send the data as a proper JSON object
+
+    const body = JSON.stringify({
+        userName: userNameString,
+        password: passwordString
+    });
+
+    console.log("Request body:", body); // Add this line for debugging
+
     return fetch('/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            userName: userNameString,
-            password: passwordString
-        }),
+        body: body,
         redirect: "follow"
     });
 }
