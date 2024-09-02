@@ -1,12 +1,8 @@
 package purrfectmate.data.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class LoginDTO {
 
-    @JsonProperty("userName")
     private String userName;
-    @JsonProperty("password")
     private String password;
 
     public LoginDTO() {
