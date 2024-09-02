@@ -1,42 +1,34 @@
 document.getElementById('login-form').onsubmit = async function (event) {
-
     event.preventDefault();
 
     const userName = getInputValue("input-username");
     const password = getInputValue("input-password");
 
     await handleLogin(userName, password);
-}
+};
 
 function getInputValue(elementId) {
-
     return document.getElementById(elementId).value.trim();
-
 }
 
 async function handleLogin(username, password) {
-
     try {
-
         const response = await postLoginData(username, password);
         await processResponse(response);
-
     } catch (error) {
-
         console.error('Error:', error);
-
     }
 }
 
-async function postLoginData(userName, password) {
-
+async function postLoginData(userNameString, passwordString) {
+    // Corrected to send the data as a proper JSON object
     return fetch('/api/login', {
         method: 'POST',
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        body: JSON.stringify(
-            userName,
-            password
-        ),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            userName: userNameString,
+            password: passwordString
+        }),
         redirect: "follow"
     });
 }
