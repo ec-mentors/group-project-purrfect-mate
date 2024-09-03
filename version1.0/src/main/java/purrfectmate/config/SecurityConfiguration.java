@@ -45,6 +45,8 @@ public class SecurityConfiguration {
                         .requestMatchers("/cats").hasAnyRole("ADMIN", "USER")
                         .anyRequest().authenticated()
                 )
+
+
                 .httpBasic(httpBasic -> httpBasic.authenticationEntryPoint((request, response, authException) -> {
                     // Prevents the basic auth prompt by setting a custom response
                     response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized Access");
