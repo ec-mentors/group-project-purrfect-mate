@@ -8,7 +8,7 @@ spring:
         # Database connection configuration (MySQL)
         username: "${MYSQL_USERNAME}"  # Database username, retrieved from environment variable MYSQL_USERNAME
         password: "${MYSQL_PASSWORD}"  # Database password, retrieved from environment variable MYSQL_PASSWORD
-        url: "jdbc:mysql://localhost:3306/catsandhumans"  # Database URL, specifying the MySQL server location and database name
+        url: "jdbc:mysql://localhost:3306/purrfect_database"  # Database URL, specifying the MySQL server location and database name
 
     # JPA (Java Persistence API) configuration, managing the interaction between Java application and the database.
     jpa:
@@ -20,8 +20,6 @@ credentials:
     admin:
         # Admin user configuration (Set environment variables to create the admin on startup)
         authorities: "ROLE_ADMIN"  # Assigns admin role
-        username: "${PURR_NAME}"   # Username from PURR_NAME environment variable
-        password: "${PURR_PASSWORD}"  # Password from PURR_PASSWORD environment variable
     user:
         # Standard user configuration
         authorities: "ROLE_USER"  # Assigns the ROLE_USER authority to the regular user

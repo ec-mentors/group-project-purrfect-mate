@@ -19,11 +19,6 @@ public class PageController {
         return prefix + "home/home.html";
     }
 
-    @GetMapping("/catProfile")
-    public String serveCatProfile() {
-        return prefix + "catProfile/CatProfile.html";
-    }
-
     @GetMapping("/login")
     public String serveLogin() {
         return prefix + "login/login.html";
@@ -31,6 +26,6 @@ public class PageController {
 
     @GetMapping("/nav")
     public String serveNav() {
-        return "/frontend/global/nav.html";
+        return prefix + "global/nav.html";
     }
 }
