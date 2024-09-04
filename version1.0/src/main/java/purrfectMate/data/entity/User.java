@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "humans")
+@Table(name = "users")
 public class User {
 
     @Id
@@ -87,4 +87,15 @@ public class User {
         this.authorities = authorities;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", location='" + location + '\'' +
+                ", authorities=" + authorities +
+                '}';
+    }
 }

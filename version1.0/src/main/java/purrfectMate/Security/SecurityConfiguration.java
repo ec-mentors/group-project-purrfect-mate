@@ -35,20 +35,28 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
         http
                 .cors(AbstractHttpConfigurer::disable)
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/humans", "/home", "/catProfile", "/api/registration", "/register", "api/login", "/login").permitAll()
-                        .requestMatchers("/frontend/**").permitAll()  // Allow access to static resources
+                        .requestMatchers("/humans", "/home", "/catProfile", "/api/registration", "/register", "/login").permitAll()
+                        .requestMatchers("/frontend/**").permitAll()
                         .requestMatchers("/cats").hasAnyRole("ADMIN", "USER")
                         .anyRequest().authenticated()
                 )
-                .httpBasic(httpBasic -> httpBasic.authenticationEntryPoint((request, response, authException) -> {
-                    // Prevents the basic auth prompt by setting a custom response
-                    response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized Access");
-                }));
+                .formLogin(form -> form
+                        .loginPage("/login")
+                        .loginProcessingUrl("/perform_login")
+                        .defaultSuccessUrl("/home", true)
+                        .failureUrl("/login?error=true")
+                        .permitAll()
+                )
+                .logout(logout -> logout
+                        .logoutUrl("/perform_logout")
+                        .logoutSuccessUrl("/login?logout=true")
+                        .deleteCookies("JSESSIONID")
+                        .permitAll()
+                );
 
         return http.build();
     }

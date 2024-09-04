@@ -32,7 +32,7 @@ logging:
         purrfectMate: "DEBUG"  # Replace with your package; set to DEBUG to enable your own logs or OFF to turn disable them
         org:
             springframework:    # These are the relevant modules for our application context
-            # security: "DEBUG"    # Use for debugging authentication and authorization issues.
+             security: "DEBUG"    # Use for debugging authentication and authorization issues.
             # web: "DEBUG"         # Use to debug request/response handling, especially for web endpoints.
             # data: "DEBUG"        # Use to monitor JPA repositories and database queries.
             # orm: "DEBUG"         # Use for debugging JPA/Hibernate entity management.
