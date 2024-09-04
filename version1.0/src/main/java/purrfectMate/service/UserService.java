@@ -19,11 +19,15 @@ public class UserService {
 
     private final UserRepository userRepo;
     private final PasswordEncoder passwordEncoder;
+    String defaultLocation = "Austria";
 
     private final Logger logger;
 
-    @Value("${credentials.user.authorities}")
-    private Set<String> userAuthorities;
+    @Value("${authorities.user}")
+    private String userAuthority;
+
+    @Value("${authorities.admin}")
+    private String adminAuthority;
 
     public UserService(UserRepository userRepo, PasswordEncoder passwordEncoder, Logger logger) {
         this.userRepo = userRepo;
@@ -35,32 +39,46 @@ public class UserService {
         return userRepo.findAll();
     }
 
-    public Optional<User> getHumanById(Long id) {
+    public Optional<User> getUserById(Long id) {
         return userRepo.findById(id);
     }
 
     public User createUser(RegisterDTO inputHuman) {
+        logger.debug("Attempting to create User: {}", inputHuman);
+        return createUserWithAuthorities(inputHuman, Set.of(userAuthority));
+    }
 
-        logger.info("Attempting to create User: " + inputHuman);
+    public User createAdmin(RegisterDTO inputHuman) {
+        logger.debug("Attempting to create Admin: {}", inputHuman);
+        return createUserWithAuthorities(inputHuman, Set.of(userAuthority, adminAuthority));
+    }
 
+    private User createUserWithAuthorities(RegisterDTO inputHuman, Set<String> authorities) {
         String username = inputHuman.getUsername();
         String email = inputHuman.getEmail();
         String password = inputHuman.getPassword();
         String encryptedPassword = passwordEncoder.encode(password);
-        String defaultLocation = "Austria";
 
-        if (userRepo.existsByUsername(username)) {
-            logger.debug("Username {} already exists", username);
-            throw new UsernameAlreadyTakenException();
-        }
-        else if (userRepo.existsByEmail(email)) {
-            logger.debug("Email {} already exists", email);
-            throw new EmailAlreadyRegisteredException();
-        }
+        validateUserDetails(username, email);
 
         User newHuman = new User(username, email, encryptedPassword, defaultLocation);
-        newHuman.setAuthorities(userAuthorities);
+        newHuman.setAuthorities(authorities);
 
         return userRepo.save(newHuman);
     }
+
+    private void validateUserDetails(String username, String email) {
+        if (userRepo.existsByUsername(username)) {
+            logger.debug("Username {} already exists, aborting user creation...", username);
+            throw new UsernameAlreadyTakenException();
+        } else if (userRepo.existsByEmail(email)) {
+            logger.debug("Email {} already exists, aborting user creation...", email);
+            throw new EmailAlreadyRegisteredException();
+        }
+    }
+
+    public boolean usernameExists(String username) {
+        return userRepo.existsByUsername(username);
+    }
+
 }

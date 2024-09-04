@@ -26,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class HumanServiceTest {
 
     @Autowired
-    private UserService humanService;
+    private UserService userService;
 
     @MockBean
     private UserRepository humanRepository;
@@ -57,7 +57,7 @@ class HumanServiceTest {
     @Test
     void getAllHumansNoHumansInDatabase() {
         Mockito.when(humanRepository.findAll()).thenReturn(List.of());
-        List<User> result = humanService.getAllUsers();
+        List<User> result = userService.getAllUsers();
         assertEquals(List.of(), result);
         Mockito.verify(humanRepository, Mockito.times(1)).findAll();
     }
@@ -65,7 +65,7 @@ class HumanServiceTest {
     @Test
     void getAllHumansTwoHumansInDatabase() {
         Mockito.when(humanRepository.findAll()).thenReturn(humans);
-        List<User> result = humanService.getAllUsers();
+        List<User> result = userService.getAllUsers();
         assertEquals(humans, result);
         Mockito.verify(humanRepository, Mockito.times(1)).findAll();
     }
@@ -74,7 +74,7 @@ class HumanServiceTest {
     void getHumanByIdHumanFound() {
         Long id = human.getId();
         Mockito.when(humanRepository.findById(id)).thenReturn(Optional.of(human));
-        Optional<User> result = humanService.getHumanById(id);
+        Optional<User> result = userService.getUserById(id);
         assertEquals(Optional.of(human), result);
         Mockito.verify(humanRepository).findById(id);
     }
@@ -83,7 +83,7 @@ class HumanServiceTest {
     void getHumanByIdHumanNotFound() {
         Long idThatLeadsToNoHuman = 1L;
         Mockito.when(humanRepository.findById(idThatLeadsToNoHuman)).thenReturn(Optional.empty());
-        Optional<User> result = humanService.getHumanById(idThatLeadsToNoHuman);
+        Optional<User> result = userService.getUserById(idThatLeadsToNoHuman);
         assertEquals(Optional.empty(), result);
         Mockito.verify(humanRepository).findById(idThatLeadsToNoHuman);
     }
@@ -93,7 +93,7 @@ class HumanServiceTest {
         Mockito.when(humanRepository.existsByUsername(username)).thenReturn(true);
 
         assertThrows(UsernameAlreadyTakenException.class, () -> {
-            humanService.createUser(dto);
+            userService.createUser(dto);
         });
 
         Mockito.verify(humanRepository, Mockito.times(1)).existsByUsername(username);
@@ -107,7 +107,7 @@ class HumanServiceTest {
         Mockito.when(humanRepository.existsByEmail(dto.getEmail())).thenReturn(true);
 
         assertThrows(EmailAlreadyRegisteredException.class, () -> {
-            humanService.createUser(dto);
+            userService.createUser(dto);
         });
 
         Mockito.verify(humanRepository, Mockito.times(1)).existsByUsername(dto.getUsername());
@@ -128,7 +128,7 @@ class HumanServiceTest {
 
         Mockito.when(humanRepository.save(Mockito.any(User.class))).thenReturn(newHuman);
 
-        User result = humanService.createUser(dto);
+        User result = userService.createUser(dto);
         assertEquals(newHuman, result);
 
         Mockito.verify(humanRepository, Mockito.times(1)).existsByUsername(dto.getUsername());
