@@ -4,13 +4,11 @@ import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import purrfectMate.data.dto.LoginDTO;
 import purrfectMate.exceptions.EmailAlreadyRegisteredException;
 import purrfectMate.exceptions.UsernameAlreadyTakenException;
 import purrfectMate.data.entity.User;
 import purrfectMate.data.dto.RegisterDTO;
 import purrfectMate.data.repository.UserRepository;
-import purrfectMate.exceptions.WrongLoginDataException;
 
 import java.util.List;
 import java.util.Optional;
@@ -64,28 +62,5 @@ public class UserService {
         newHuman.setAuthorities(userAuthorities);
 
         return userRepo.save(newHuman);
-    }
-
-    public User loginUser(LoginDTO loginDTO) {
-        // Log the login attempt at the start to capture input values
-        logger.debug("Attempting login for user: {}", loginDTO);
-
-        // Find the user by username or throw an exception if not found
-        User user = userRepo.findByUsername(loginDTO.getUserName())
-                .orElseThrow(() -> {
-                    logger.debug("Username {} not found", loginDTO.getUserName());
-                    return new WrongLoginDataException();
-                });
-
-        // Check if password matches user
-        if (passwordEncoder.matches(loginDTO.getPassword(), user.getPassword())) {
-            logger.debug("Password { match for username: {}", loginDTO.getUserName());
-            return user;
-        }
-        else {
-            // Log and throw an exception if the password does not match
-            logger.debug("Credentials do not match for username: {}", loginDTO.getUserName());
-            throw new WrongLoginDataException();
-        }
     }
 }

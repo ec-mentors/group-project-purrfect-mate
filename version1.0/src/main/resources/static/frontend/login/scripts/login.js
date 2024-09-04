@@ -1,63 +1,15 @@
-document.getElementById('login-form').onsubmit = async function (event) {
-    event.preventDefault();
+document.addEventListener('DOMContentLoaded', function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const error = urlParams.get('error');
 
-    const userName = getInputValue("input-username");
-    const password = getInputValue("input-password");
-
-    await handleLogin(userName, password);
-};
-
-function getInputValue(elementId) {
-    return document.getElementById(elementId).value.trim();
-}
-
-async function handleLogin(username, password) {
-    try {
-        const response = await postLoginData(username, password);
-        await processResponse(response);
-    } catch (error) {
-        console.error('Error:', error);
+    if (error === 'true') {
+        displayErrorMessage('Username or password is incorrect');
     }
-}
+});
 
-async function postLoginData(userNameString, passwordString) {
-
-    const body = JSON.stringify({
-        userName: userNameString,
-        password: passwordString
-    });
-
-    console.log("Attempting login with: ", body);
-
-    return fetch('/api/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: body,
-        redirect: "follow"
-    });
-}
-
-async function processResponse(response) {
-    if (!response.ok) {
-        const errorMessage = await response.text();
-        displayErrorMessage(errorMessage);
-        return;
-    }
-    const data = await response.json();
-    alert('Login successful: ' + data);
-    console.log("Successfully logged in!");
-}
-
-function displayErrorMessage(errorMessage) {
-    switch (errorMessage) {
-        case "Username or password is incorrect":
-            displayError('username-error', errorMessage);
-            break;
-        default:
-            console.error('Unexpected error:', errorMessage);
-    }
-}
-
-function displayError(elementId, message) {
-    document.getElementById(elementId).textContent = message;
+function displayErrorMessage(message) {
+    // Display error message below the username input
+    const errorElement = document.getElementById('username-error');
+    errorElement.textContent = message;
+    errorElement.classList.add('d-block'); // Ensure the message is visible
 }
