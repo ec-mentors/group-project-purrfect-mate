@@ -60,15 +60,14 @@ public class SecurityConfiguration {
                         .deleteCookies("JSESSIONID")
                         .permitAll()
                 )
+                .httpBasic(AbstractHttpConfigurer::disable)
 
-                .sessionManagement(session -> session
-                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED) // Sessions will be created as necessary
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED) // Sessions will be created as necessary
                 .invalidSessionUrl("/login?invalid=true") // Redirect to login if session is invalid
                 .maximumSessions(1) // Limit to one session per user
                 .maxSessionsPreventsLogin(false) // Allow users to log in again (kicking out previous session)
-                )
+                );
 
-                .httpBasic(withDefaults());
 
 
         return http.build();
