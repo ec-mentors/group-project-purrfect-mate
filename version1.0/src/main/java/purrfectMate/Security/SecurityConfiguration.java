@@ -21,6 +21,7 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import purrfectMate.data.repository.UserRepository;
 
+import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 @EnableMethodSecurity(securedEnabled = true)
@@ -64,7 +65,9 @@ public class SecurityConfiguration {
                 .invalidSessionUrl("/login?invalid=true") // Redirect to login if session is invalid
                 .maximumSessions(1) // Limit to one session per user
                 .maxSessionsPreventsLogin(false) // Allow users to log in again (kicking out previous session)
-                );
+                )
+
+                .httpBasic(withDefaults());
 
         return http.build();
     }
