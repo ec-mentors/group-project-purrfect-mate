@@ -43,7 +43,7 @@ public class SecurityConfiguration {
                 .cors(AbstractHttpConfigurer::disable)
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/home", "/catProfile", "/api/registration", "/register", "/login").permitAll()
+                        .requestMatchers("/home", "/catProfile", "/api/registration", "/register", "/login", "/nav").permitAll()
                         .requestMatchers("/frontend/**").permitAll()
                         .anyRequest().authenticated()
                 )
@@ -62,10 +62,11 @@ public class SecurityConfiguration {
                 )
                 .httpBasic(AbstractHttpConfigurer::disable)
 
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED) // Sessions will be created as necessary
-                .invalidSessionUrl("/login?invalid=true") // Redirect to login if session is invalid
-                .maximumSessions(1) // Limit to one session per user
-                .maxSessionsPreventsLogin(false) // Allow users to log in again (kicking out previous session)
+                .sessionManagement(session ->
+                        session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED) // Sessions will be created as necessary
+                        .invalidSessionUrl("/login?invalid=true") // Redirect to login if session is invalid
+                        .maximumSessions(1) // Limit to one session per user
+                        .maxSessionsPreventsLogin(false) // Allow users to log in again (kicking out previous session)
                 );
 
 
