@@ -31,14 +31,14 @@ public class SecurityConfiguration {
                 .cors(AbstractHttpConfigurer::disable)
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/frontend/**", "/home", "/catProfile", "/api/registration", "/register", "/login", "/nav").permitAll()
+                        .requestMatchers("/frontend/**", "/home", "/catProfile", "/api/registration", "/register", "/login", "/nav", "/auth/status").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
                         .loginPage("/login")
                         .loginProcessingUrl("/perform_login")
                         .defaultSuccessUrl("/home", true)
-                        .failureUrl("/login?error=true")
+                        .failureUrl("/login?error=true") 
                         .permitAll()
                 )
                 .logout(logout -> logout
