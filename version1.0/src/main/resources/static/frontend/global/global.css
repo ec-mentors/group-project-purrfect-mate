@@ -1,5 +1,5 @@
 :root {
-    --primary: #94E8B4;
+    --primary: linear-gradient(135deg, #fbc2eb, #a6c1ee, #b1f4cf);
 }
 
 .w-10 {
@@ -53,7 +53,7 @@
 }
 
 .purr {
-    background-color: var(--primary) !important;
+    background: var(--primary) !important;
 }
 
 @media (min-width: 992px) {

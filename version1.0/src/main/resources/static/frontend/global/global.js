@@ -26,7 +26,7 @@ async function changeNavIfLoggedIn() {
         const navLogin = document.getElementById('nav-login');
         if (navLogin) {
             // Update the login link to a profile link
-            navLogin.innerHTML = '<a class="nav-link text-decoration-none hover-grow" href="/profile">Profile</a>';
+            navLogin.innerHTML = '<a class="nav-link text-decoration-none hover-grow" href="/perform_logout">Logout</a>';
         } else {
             console.warn('Navigation login element not found.');
         }
