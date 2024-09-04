@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -19,6 +20,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import purrfectMate.data.repository.UserRepository;
+
 
 @Configuration
 @EnableMethodSecurity(securedEnabled = true)
@@ -39,9 +41,8 @@ public class SecurityConfiguration {
                 .cors(AbstractHttpConfigurer::disable)
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/humans", "/home", "/catProfile", "/api/registration", "/register", "/login").permitAll()
+                        .requestMatchers("/home", "/catProfile", "/api/registration", "/register", "/login").permitAll()
                         .requestMatchers("/frontend/**").permitAll()
-                        .requestMatchers("/cats").hasAnyRole("ADMIN", "USER")
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
@@ -56,6 +57,13 @@ public class SecurityConfiguration {
                         .logoutSuccessUrl("/login?logout=true")
                         .deleteCookies("JSESSIONID")
                         .permitAll()
+                )
+
+                .sessionManagement(session -> session
+                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED) // Sessions will be created as necessary
+                .invalidSessionUrl("/login?invalid=true") // Redirect to login if session is invalid
+                .maximumSessions(1) // Limit to one session per user
+                .maxSessionsPreventsLogin(false) // Allow users to log in again (kicking out previous session)
                 );
 
         return http.build();
