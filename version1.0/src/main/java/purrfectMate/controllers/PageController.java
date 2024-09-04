@@ -1,6 +1,5 @@
 package purrfectMate.controllers;
 
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -20,12 +19,6 @@ public class PageController {
         return prefix + "home/home.html";
     }
 
-    @GetMapping("/catProfile")
-    @Secured("ROLE_USER")
-    public String serveCatProfile() {
-        return prefix + "catProfile/CatProfile.html";
-    }
-
     @GetMapping("/login")
     public String serveLogin() {
         return prefix + "login/login.html";
@@ -33,6 +26,6 @@ public class PageController {
 
     @GetMapping("/nav")
     public String serveNav() {
-        return "/frontend/global/nav.html";
+        return prefix + "global/nav.html";
     }
 }
