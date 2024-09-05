@@ -77,6 +77,10 @@ body {
     background: var(--gradient-color-1);
 }
 
+.purr-button-violet:hover {
+    background: var(--gradient-color-1);
+}
+
 .purr-container {
     border-radius: 20px !important; /* Optional: for rounded corners */
     background-image: var(--primary), var(--primary) !important; /* Double background */

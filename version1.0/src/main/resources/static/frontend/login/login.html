@@ -20,7 +20,7 @@
 <div id="navbar-placeholder"></div>
 
 <div class="container my-5 purr-container p-4">
-    <div class="row justify-content-between">
+    <div class="row justify-content-between align-content-center">
         <div class="col-12 col-lg-5">
             <h3>Login:</h3>
             <form id="login-form" action="/perform_login" method="post" novalidate>
@@ -50,9 +50,11 @@
                 <button type="submit" class="btn purr-button-green my-3">Submit</button>
             </form>
         </div>
-        <div class="col-12 col-lg-5 align-content-center align-items-center text-center">
-            <h1>Not a purrfect mate yet? <br>
-                <button type="submit" class="btn purr-button-violet my-3">Become one</button>
+        <div class="col-12 col-lg-7 align-content-center text-center">
+            <h1 class="m-0">Not a purrfect mate yet? <br>
+                <a href="/register">
+                    <button class="btn purr-button-violet my-4">Become one</button>
+                </a>
             </h1>
         </div>
     </div>
