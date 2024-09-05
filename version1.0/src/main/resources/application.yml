@@ -15,14 +15,10 @@ spring:
         hibernate:
             ddl-auto: "update"  # Specifies the action taken for database schema management, "update" keeps the schema updated without losing data
 
-# Custom application credentials configuration
-credentials:
-    admin:
-        # Admin user configuration (Set environment variables to create the admin on startup)
-        authorities: "ROLE_ADMIN"  # Assigns admin role
-    user:
-        # Standard user configuration
-        authorities: "ROLE_USER"  # Assigns the ROLE_USER authority to the regular user
+
+authorities:
+    user: "ROLE_USER"
+    admin: "ROLE_ADMIN"
 
 logging:
     level:

@@ -13,35 +13,35 @@ import java.util.Set;
 
 public class UserPrincipal implements UserDetails {
 
-    private final User human;
+    private final User user;
 
     public UserPrincipal(User human) {
-        this.human = human;
+        this.user = human;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
-        Set<String> authorities = human.getAuthorities();
+        Set<String> authorities = user.getAuthorities();
         return AuthorityUtils.createAuthorityList(authorities.toArray(new String[0]));
     }
 
     @Override
     public String getPassword() {
-        return human.getPassword();
+        return user.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return human.getUsername();
+        return user.getUsername();
     }
 
     public Long getUserId() {
-        return human.getId();
+        return user.getId();
     }
 
     public String getLocation() {
-        return human.getLocation();
+        return user.getLocation();
     }
 
     @Override
@@ -62,5 +62,12 @@ public class UserPrincipal implements UserDetails {
     @Override
     public boolean isEnabled() {
         return UserDetails.super.isEnabled();
+    }
+
+    @Override
+    public String toString() {
+        return "UserPrincipal{" +
+                "user=" + user +
+                '}';
     }
 }

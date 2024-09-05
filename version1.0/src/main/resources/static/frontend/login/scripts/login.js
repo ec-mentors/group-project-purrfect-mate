@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function displayErrorMessage(message) {
     // Display error message below the username input
-    const errorElement = document.getElementById('username-error');
+    const errorElement = document.getElementById('password-error');
     errorElement.textContent = message;
     errorElement.classList.add('d-block'); // Ensure the message is visible
 }
