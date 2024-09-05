@@ -39,7 +39,6 @@ async function isLoggedIn() {
             method: 'GET',
             credentials: 'include' // Include session cookies for authentication check
         });
-
         // Only return true if the status is 200
         return response.status === 200;
     } catch (error) {

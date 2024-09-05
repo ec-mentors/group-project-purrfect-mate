@@ -34,6 +34,9 @@ function validateUsername(username) {
     if (username === "") {
         displayError('username-error', 'Username is required');
         return false;
+    } else if (username.includes(" ")) {
+        displayError("username-error", "Username must not contain spaces")
+        return false;
     }
     return true;
 }
