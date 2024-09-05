@@ -1,4 +1,4 @@
-// Function to validate the entire form fields
+// Validate the entire form fields
 export function validateForm(username, email, password, repeatPassword) {
     let isValid = true;
 
@@ -17,6 +17,16 @@ export function validateForm(username, email, password, repeatPassword) {
     }
 
     return isValid;
+}
+
+// Validate reCAPTCHA completion
+export function validateRecaptcha() {
+    const recaptchaResponse = grecaptcha.getResponse(); // Get the reCAPTCHA response
+    if (!recaptchaResponse) {
+        displayError('recaptcha-error', 'Please complete the reCAPTCHA to proceed.');
+        return false;
+    }
+    return true;
 }
 
 // Validate username
@@ -65,13 +75,17 @@ function validateRepeatPassword(password, repeatPassword) {
 
 // Function to display error messages
 export function displayError(elementId, message) {
-    document.getElementById(elementId).textContent = message;
+    const element = document.getElementById(elementId);
+    element.textContent = message;
+    element.classList.add('d-block'); // Ensure the message is visible
 }
 
 // Function to clear all error messages
 export function clearErrors() {
-    ['username-error', 'email-error', 'password-error', 'repeat-password-error'].forEach(id => {
-        document.getElementById(id).textContent = '';
+    ['username-error', 'email-error', 'password-error', 'repeat-password-error', 'recaptcha-error'].forEach(id => {
+        const element = document.getElementById(id);
+        element.textContent = '';
+        element.classList.remove('d-block'); // Hide the message
     });
 }
 
@@ -83,12 +97,16 @@ export function setupValidationListeners() {
     const repeatPasswordElement = document.getElementById('repeat-password');
 
     usernameElement.addEventListener('input', () => clearErrorsOnInput('username-error', validateUsername(usernameElement.value.trim())));
-    emailElement.addEventListener('input', () => clearErrorsOnInput('email-error', validateEmail(emailElement.value)));
+    emailElement.addEventListener('input', () => clearErrorsOnInput('email-error', validateEmail(emailElement.value.trim())));
     passwordElement.addEventListener('input', () => clearErrorsOnInput('password-error', validatePassword(passwordElement.value, usernameElement.value)));
     repeatPasswordElement.addEventListener('input', () => clearErrorsOnInput('repeat-password-error', validateRepeatPassword(passwordElement.value, repeatPasswordElement.value)));
 }
 
 // Helper to clear specific error on valid input
 function clearErrorsOnInput(elementId, condition) {
-    if (condition) document.getElementById(elementId).textContent = '';
+    if (condition) {
+        const element = document.getElementById(elementId);
+        element.textContent = '';
+        element.classList.remove('d-block'); // Hide the message if input is valid
+    }
 }

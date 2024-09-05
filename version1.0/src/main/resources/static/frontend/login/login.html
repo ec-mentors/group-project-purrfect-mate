@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="/frontend/global/global.css">
+
     <title>Home</title>
+
 </head>
 <body>
 
@@ -38,6 +42,9 @@
             <input type="password" class="form-control" name="password" id="input-password">
             <span id="password-error" class="text-danger"></span>
         </div>
+        <br>
+        <div class="g-recaptcha" data-sitekey="6LcbUDcqAAAAAEou-AgSz1FI-7-W6wtZoqyRjED_"></div>
+        <span id="recaptcha-error" class="text-danger"></span>
         <button type="submit" class="btn purr my-3">Submit</button>
     </form>
     Not a purrfect mate yet?  <a href="/register">Register</a>
@@ -46,5 +53,8 @@
 
 <script src="/frontend/global/global.js"></script>
 <script type="module" src="/frontend/login/scripts/login.js"></script>
+
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 </body>
 </html>

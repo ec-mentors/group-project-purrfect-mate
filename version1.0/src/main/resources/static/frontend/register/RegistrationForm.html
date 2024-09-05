@@ -67,7 +67,9 @@
             <input type="password" class="form-control" id="repeat-password">
             <span id="repeat-password-error" class="text-danger"></span>
         </div>
-
+        <br>
+        <div class="g-recaptcha" data-sitekey="6LcbUDcqAAAAAEou-AgSz1FI-7-W6wtZoqyRjED_"></div>
+        <span id="recaptcha-error" class="text-danger"></span>
         <button type="submit" class="btn purr my-3">Submit</button>
     </form>
     <br>
@@ -79,5 +81,8 @@
 <script src="/frontend/global/global.js"></script>
 <script type="module" src="/frontend/register/scripts/validation.js"></script>
 <script type="module" src="/frontend/register/scripts/formHandler.js"></script>
+
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 </body>
 </html>

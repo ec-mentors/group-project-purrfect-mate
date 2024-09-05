@@ -1,4 +1,4 @@
-import { validateForm, clearErrors, setupValidationListeners, displayError } from './validation.js';
+import { validateForm, clearErrors, setupValidationListeners, displayError, validateRecaptcha } from './validation.js';
 
 // Initialize validation listeners on form load
 setupValidationListeners();
@@ -16,15 +16,15 @@ document.getElementById('registration-form').onsubmit = async function (event) {
     const repeatPassword = document.getElementById('repeat-password').value;
 
     // Validate form data
-    if (!validateForm(username, email, password, repeatPassword)) {
-        return; // Stop if validation fails
+    if (!validateForm(username, email, password, repeatPassword) || !validateRecaptcha()) {
+        return; // Stop if validation or reCAPTCHA check fails
     }
 
     // Prepare form data
     const formData = {
         username,
         email,
-        password
+        password,
     };
 
     try {
@@ -39,6 +39,7 @@ document.getElementById('registration-form').onsubmit = async function (event) {
         if (!response.ok) {
             const errorMessage = await response.text();
             handleError(errorMessage);
+            return;
         }
 
         // Handle successful response

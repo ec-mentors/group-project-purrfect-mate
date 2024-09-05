@@ -23,7 +23,7 @@ authorities:
 logging:
     level:
         root: "INFO"  # Default logging level for all loggers
-        purrfectMate: "DEBUG"  # Replace with your package; set to DEBUG to enable your own logs or OFF to turn disable them
+        purrfectMate: "DEBUG"  # Replace with your package; set to DEBUG to enable your own logs or OFF to disable them
         org:
             springframework:    # These are the relevant modules for our application context
              security: "DEBUG"    # Use for debugging authentication and authorization issues.
