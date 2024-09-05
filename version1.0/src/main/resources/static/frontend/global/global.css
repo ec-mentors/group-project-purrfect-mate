@@ -1,5 +1,10 @@
 :root {
-    --primary: linear-gradient(135deg, #fbc2eb, #a6c1ee, #b1f4cf);
+    --gradient-color-1: #fbc2eb; /* Soft pink */
+    --gradient-color-2: #a6c1ee; /* Light blue */
+    --gradient-color-3: #b1f4cf; /* Mint green */
+    --primary: linear-gradient(135deg, var(--gradient-color-1), var(--gradient-color-2), var(--gradient-color-3));
+
+    --secondary: #b6e5e9;
 }
 
 .w-10 {
@@ -56,16 +61,36 @@
     background: var(--primary) !important;
 }
 
-@media (min-width: 992px) {
+.purr-button {
+    background: var(--secondary);
+    /*box-shadow: 2px 2px 2px black;*/
+}
 
+.purr-button:hover {
+    background: var(--secondary);
+}
+
+.purr-border {
+    position: relative !important;
+    border: 4px solid transparent !important; /* Set the border width */
+    border-radius: 20px !important; /* Optional: for rounded corners */
+    background-image: var(--primary), var(--primary) !important; /* Double background */
+    background-origin: border-box !important;
+    background-clip: content-box, border-box !important; /* Clip background to show the gradient border */
+}
+
+@media (min-width: 992px) {
+    {
     .w-lg-40 {
         width: 40% !important;
     }
+
     .w-lg-75 {
         width: 75% !important;
     }
+
     .w-lg-100 {
         width: 100% !important;
     }
-
+    }
 }

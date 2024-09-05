@@ -96,10 +96,14 @@ export function setupValidationListeners() {
     const passwordElement = document.getElementById('input-password');
     const repeatPasswordElement = document.getElementById('repeat-password');
 
-    usernameElement.addEventListener('input', () => clearErrorsOnInput('username-error', validateUsername(usernameElement.value.trim())));
-    emailElement.addEventListener('input', () => clearErrorsOnInput('email-error', validateEmail(emailElement.value.trim())));
-    passwordElement.addEventListener('input', () => clearErrorsOnInput('password-error', validatePassword(passwordElement.value, usernameElement.value)));
-    repeatPasswordElement.addEventListener('input', () => clearErrorsOnInput('repeat-password-error', validateRepeatPassword(passwordElement.value, repeatPasswordElement.value)));
+    usernameElement.addEventListener('input',
+        () => clearErrorsOnInput('username-error', validateUsername(usernameElement.value.trim())));
+    emailElement.addEventListener('input',
+        () => clearErrorsOnInput('email-error', validateEmail(emailElement.value.trim())));
+    passwordElement.addEventListener('input',
+        () => clearErrorsOnInput('password-error', validatePassword(passwordElement.value, usernameElement.value)));
+    repeatPasswordElement.addEventListener('input',
+        () => clearErrorsOnInput('repeat-password-error', validateRepeatPassword(passwordElement.value, repeatPasswordElement.value)));
 }
 
 // Helper to clear specific error on valid input
