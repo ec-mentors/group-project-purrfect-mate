@@ -19,35 +19,44 @@
 <!-- navbar -->
 <div id="navbar-placeholder"></div>
 
-<div class="container my-5 h-100 purr-container p-4">
-    <h3>Login:</h3>
-    <form id="login-form" action="/perform_login" method="post" novalidate>
-        <div class="form-group">
-            <label for="input-username">
-                Username
-                <span data-bs-toggle="tooltip" data-bs-placement="top" title="This name will be displayed in your public profile.">
+<div class="container my-5 purr-container p-4">
+    <div class="row justify-content-between">
+        <div class="col-12 col-lg-5">
+            <h3>Login:</h3>
+            <form id="login-form" action="/perform_login" method="post" novalidate>
+                <div class="form-group">
+                    <label for="input-username">
+                        Username
+                        <span data-bs-toggle="tooltip" data-bs-placement="top" title="This name will be displayed in your public profile.">
                     <i class="bi bi-info-circle"></i>
                 </span>
-            </label>
-            <input type="text" class="form-control" name="username" id="input-username" aria-describedby="username-help">
-            <span id="username-error" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label for="input-password">
-                Password
-                <span data-bs-toggle="tooltip" data-bs-placement="top" title="Choose a strong password for your account.">
+                    </label>
+                    <input type="text" class="form-control" name="username" id="input-username" aria-describedby="username-help">
+                    <span id="username-error" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="input-password">
+                        Password
+                        <span data-bs-toggle="tooltip" data-bs-placement="top" title="Choose a strong password for your account.">
                     <i class="bi bi-info-circle"></i>
                 </span>
-            </label>
-            <input type="password" class="form-control" name="password" id="input-password">
-            <span id="password-error" class="text-danger"></span>
+                    </label>
+                    <input type="password" class="form-control" name="password" id="input-password">
+                    <span id="password-error" class="text-danger"></span>
+                </div>
+                <br>
+                <div class="g-recaptcha" data-sitekey="6LcbUDcqAAAAAEou-AgSz1FI-7-W6wtZoqyRjED_"></div>
+                <span id="recaptcha-error" class="text-danger"></span>
+                <button type="submit" class="btn purr-button-green my-3">Submit</button>
+            </form>
         </div>
-        <br>
-        <div class="g-recaptcha" data-sitekey="6LcbUDcqAAAAAEou-AgSz1FI-7-W6wtZoqyRjED_"></div>
-        <span id="recaptcha-error" class="text-danger"></span>
-        <button type="submit" class="btn purr-button my-3">Submit</button>
-    </form>
-    Not a purrfect mate yet?  <a href="/register">Register</a>
+        <div class="col-12 col-lg-5 align-content-center align-items-center text-center">
+            <h1>Not a purrfect mate yet? <br>
+                <button type="submit" class="btn purr-button-violet my-3">Become one</button>
+            </h1>
+        </div>
+    </div>
+
 </div>
 
 

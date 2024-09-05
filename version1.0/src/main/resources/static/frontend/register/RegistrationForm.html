@@ -22,59 +22,63 @@
 
     <h3>Create new account</h3>
     <br>
-
-    <form id="registration-form" novalidate>
-        <div class="form-group">
-            <label for="input-username">
-                Username
-                <span data-bs-toggle="tooltip" data-bs-placement="top" title="This name will be displayed in your public profile.">
+    <div class="row justify-content-between align-items-center">
+        <div class="col-12 col-lg-5">
+            <form id="registration-form" novalidate>
+                <div class="form-group">
+                    <label for="input-username">
+                        Username
+                        <span data-bs-toggle="tooltip" data-bs-placement="top" title="This name will be displayed in your public profile.">
                 <i class="bi bi-info-circle"></i>
             </span>
-            </label>
-            <input type="text" class="form-control" id="input-username" aria-describedby="username-help">
-            <span id="username-error" class="text-danger"></span>
-        </div>
+                    </label>
+                    <input type="text" class="form-control" id="input-username" aria-describedby="username-help">
+                    <span id="username-error" class="text-danger"></span>
+                </div>
 
-        <div class="form-group">
-            <label for="input-email">
-                Email address
-                <span data-bs-toggle="tooltip" data-bs-placement="top" title="We'll never share your email with anyone else.">
+                <div class="form-group">
+                    <label for="input-email">
+                        Email address
+                        <span data-bs-toggle="tooltip" data-bs-placement="top" title="We'll never share your email with anyone else.">
                 <i class="bi bi-info-circle"></i>
             </span>
-            </label>
-            <input type="email" class="form-control" id="input-email" aria-describedby="emailHelp">
-            <span id="email-error" class="text-danger"></span>
-        </div>
+                    </label>
+                    <input type="email" class="form-control" id="input-email" aria-describedby="emailHelp">
+                    <span id="email-error" class="text-danger"></span>
+                </div>
 
-        <div class="form-group">
-            <label for="input-password">
-                Password
-                <span data-bs-toggle="tooltip" data-bs-placement="top" title="Choose a strong password for your account.">
+                <div class="form-group">
+                    <label for="input-password">
+                        Password
+                        <span data-bs-toggle="tooltip" data-bs-placement="top" title="Choose a strong password for your account.">
                 <i class="bi bi-info-circle"></i>
             </span>
-            </label>
-            <input type="password" class="form-control" id="input-password">
-            <span id="password-error" class="text-danger"></span>
-        </div>
+                    </label>
+                    <input type="password" class="form-control" id="input-password">
+                    <span id="password-error" class="text-danger"></span>
+                </div>
 
-        <div class="form-group">
-            <label for="repeat-password">
-                Confirm password
-                <span data-bs-toggle="tooltip" data-bs-placement="top" title="Re-enter your password to confirm it.">
+                <div class="form-group">
+                    <label for="repeat-password">
+                        Confirm password
+                        <span data-bs-toggle="tooltip" data-bs-placement="top" title="Re-enter your password to confirm it.">
                 <i class="bi bi-info-circle"></i>
             </span>
-            </label>
-            <input type="password" class="form-control" id="repeat-password">
-            <span id="repeat-password-error" class="text-danger"></span>
+                    </label>
+                    <input type="password" class="form-control" id="repeat-password">
+                    <span id="repeat-password-error" class="text-danger"></span>
+                </div>
+                <br>
+                <div class="g-recaptcha" data-sitekey="6LcbUDcqAAAAAEou-AgSz1FI-7-W6wtZoqyRjED_"></div>
+                <span id="recaptcha-error" class="text-danger"></span>
+                <button type="submit" class="btn purr-button-green my-3">Submit</button>
+            </form>
         </div>
-        <br>
-        <div class="g-recaptcha" data-sitekey="6LcbUDcqAAAAAEou-AgSz1FI-7-W6wtZoqyRjED_"></div>
-        <span id="recaptcha-error" class="text-danger"></span>
-        <button type="submit" class="btn purr-button my-3">Submit</button>
-    </form>
-    <br>
-    Already have an account?
-    <a href="/login">Log-in</a>
+        <div class="col-12 col-lg-5 text-center">
+            <h1>Already have an account?</h1><br>
+            <button type="submit" class="btn purr-button-violet my-3">Log in</button>
+        </div>
+    </div>
 
 </div>
 
