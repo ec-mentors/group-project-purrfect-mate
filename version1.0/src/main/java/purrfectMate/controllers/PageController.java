@@ -14,6 +14,11 @@ public class PageController {
         return prefix + "register/registrationForm.html";
     }
 
+    @GetMapping("/registerCat")
+    public String serveCatRegistration() {
+        return prefix + "registercat/catForm.html";
+    }
+
     @GetMapping("/home")
     public String serveHome() {
         return prefix + "home/home.html";
