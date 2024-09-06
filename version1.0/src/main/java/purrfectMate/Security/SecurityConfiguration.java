@@ -28,7 +28,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/frontend/**",
                                 "/api/registration", "/register",
-                                "/login", "/nav").permitAll()
+                                "/login", "/nav", "/auth/status", "/home").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
@@ -51,6 +51,7 @@ public class SecurityConfiguration {
                                 .maximumSessions(1)
                                 .maxSessionsPreventsLogin(false)
                 );
+
         return http.build();
     }
 
