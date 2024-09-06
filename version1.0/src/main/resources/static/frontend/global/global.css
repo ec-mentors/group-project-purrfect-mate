@@ -1,5 +1,8 @@
 :root {
-    --primary: linear-gradient(135deg, #fbc2eb, #a6c1ee, #b1f4cf);
+    --gradient-color-1: #fbc2eb; /* Soft pink */
+    --gradient-color-2: #a6c1ee; /* Light blue */
+    --gradient-color-3: #b1f4cf; /* Mint green */
+    --primary: linear-gradient(135deg, var(--gradient-color-1), var(--gradient-color-2), var(--gradient-color-3));
 }
 
 .w-10 {
@@ -38,6 +41,12 @@
     z-index: 1000;
 }
 
+body {
+    height: 100vh;
+    width: 100vw;
+    background: #2E2E2E; !important;
+}
+
 .nav-link{
     opacity: 1 !important;
     color: black !important;
@@ -56,16 +65,43 @@
     background: var(--primary) !important;
 }
 
+.purr-button-green {
+    background: var(--gradient-color-3);
+}
+
+.purr-button-green:hover {
+    background: var(--gradient-color-3);
+}
+
+.purr-button-violet {
+    background: var(--gradient-color-1);
+}
+
+.purr-button-violet:hover {
+    background: var(--gradient-color-1);
+}
+
+.purr-container {
+    border-radius: 20px !important; /* Optional: for rounded corners */
+    background-image: var(--primary), var(--primary) !important; /* Double background */
+    box-shadow: 1px 1px 1px 1px white;
+}
+
 @media (min-width: 992px) {
 
     .w-lg-40 {
         width: 40% !important;
     }
+
+    .w-lg-50 {
+        width: 50% !important;
+    }
+
     .w-lg-75 {
         width: 75% !important;
     }
+
     .w-lg-100 {
         width: 100% !important;
     }
-
 }

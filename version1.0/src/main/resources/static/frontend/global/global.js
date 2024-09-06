@@ -11,10 +11,9 @@ async function loadNavbar() {
     try {
         const response = await fetch('/nav');
         if (!response.ok) {
-            throw new Error('Failed to load navbar');
+            console.log("Nav loaded successfully...");
         }
-        const data = await response.text();
-        document.getElementById('navbar-placeholder').innerHTML = data;
+        document.getElementById('navbar-placeholder').innerHTML = await response.text();
     } catch (error) {
         console.error('Error loading navbar:', error);
     }
@@ -22,7 +21,7 @@ async function loadNavbar() {
 
 // Function to change the navbar login link if the user is logged in
 async function changeNavIfLoggedIn() {
-    if (await checkIfLoggedIn()) {
+    if (await isLoggedIn()) {
         const navLogin = document.getElementById('nav-login');
         if (navLogin) {
             // Update the login link to a profile link
@@ -33,13 +32,13 @@ async function changeNavIfLoggedIn() {
     }
 }
 
-async function checkIfLoggedIn() {
+async function isLoggedIn() {
+
     try {
         const response = await fetch('/auth/status', {
             method: 'GET',
             credentials: 'include' // Include session cookies for authentication check
         });
-
         // Only return true if the status is 200
         return response.status === 200;
     } catch (error) {
