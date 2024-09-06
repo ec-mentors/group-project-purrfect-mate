@@ -33,4 +33,9 @@ public class PageController {
     public String serveNav() {
         return prefix + "global/nav.html";
     }
+
+    @GetMapping("/catProfile")
+    public String serveCatProfile() {
+        return prefix + "catProfile/catProfile.html";
+    }
 }
