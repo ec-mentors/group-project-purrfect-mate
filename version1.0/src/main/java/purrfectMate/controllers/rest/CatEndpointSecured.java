@@ -1,5 +1,8 @@
 package purrfectMate.controllers.rest;
 
+import org.slf4j.Logger;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,10 +19,13 @@ import java.util.List;
 @RequestMapping("/cats")
 public class CatEndpointSecured {
 
+    private final Logger logger;
+
     private final CatService catService;
 
-    public CatEndpointSecured(CatService catService) {
+    public CatEndpointSecured(CatService catService, Logger logger) {
         this.catService = catService;
+        this.logger = logger;
     }
 
     @GetMapping("/{humanId}")
@@ -46,11 +52,16 @@ public class CatEndpointSecured {
 
     @PostMapping("/{humanId}/registerCat")
     @Secured("ROLE_USER")
-    public Cat addCat(@PathVariable Long humanId,
-                      @RequestPart("cat") Cat cat,      // RequestPart is necessary because RequestBody would work with JSON but picture can't be included in JSON
-                      @RequestParam("file") MultipartFile file) throws IOException {
+    public ResponseEntity<Cat> addCat(@PathVariable Long humanId,
+                                 @RequestPart("cat") Cat cat,      // RequestPart is necessary because RequestBody would work with JSON but picture can't be included in JSON
+                                 @RequestParam("file") MultipartFile file) throws IOException {
 
-        return catService.createCat(cat, file, humanId);
+        try {
+            return ResponseEntity.status(HttpStatus.CREATED).body(catService.createCat(cat, file, humanId));
+        } catch (IOException e) {
+            logger.debug("IOException while writing image: {}", e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @DeleteMapping()
