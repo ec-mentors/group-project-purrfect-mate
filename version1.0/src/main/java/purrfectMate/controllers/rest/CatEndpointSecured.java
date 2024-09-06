@@ -35,18 +35,18 @@ public class CatEndpointSecured {
     }
 
     @GetMapping("/{catId}")
-    @Secured("ROLE_USER")
     public ResponseEntity<CatResponseDTO> getCatById(@PathVariable Long catId) throws IOException {
         return catService.getCatWithImageById(catId);
     }
 
     @GetMapping("/numberOfCatsInDatabase")
     public int getNumberOfCatsInDatabase() {
-        return catService.returnNumberOfCatsInDatabase();
+        int numberOfCatsInDatabase = catService.returnNumberOfCatsInDatabase();
+        logger.debug("Number of cats in database: {}", numberOfCatsInDatabase);
+        return numberOfCatsInDatabase;
     }
 
     @GetMapping()
-    @Secured("ROLE_USER")
     public List<Cat> getCatsByLocation() {
 
         // Retrieve the logged-in user's details
@@ -62,7 +62,6 @@ public class CatEndpointSecured {
 
 
     @PostMapping("/{humanId}/registerCat")
-    @Secured("ROLE_USER")
     public ResponseEntity<Cat> addCat(@PathVariable Long humanId,
                                  @RequestPart("cat") Cat cat,      // RequestPart is necessary because RequestBody would work with JSON but picture can't be included in JSON
                                  @RequestParam("file") MultipartFile file) {

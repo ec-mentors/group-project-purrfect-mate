@@ -2,6 +2,7 @@ package purrfectMate.service;
 
 
 import jakarta.persistence.EntityNotFoundException;
+import org.slf4j.Logger;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.Authentication;
@@ -26,10 +27,12 @@ public class CatService {
 
     private final UserRepository humanRepo;
     private final CatRepository catRepo;
+    private final Logger logger;
 
-    public CatService(UserRepository humanRepo, CatRepository catRepo) {
+    public CatService(UserRepository humanRepo, CatRepository catRepo, Logger logger) {
         this.humanRepo = humanRepo;
         this.catRepo = catRepo;
+        this.logger = logger;
     }
 
 
@@ -38,6 +41,8 @@ public class CatService {
     }
 
     public int returnNumberOfCatsInDatabase() {
+        int dbSize = catRepo.findAll().size();
+        logger.debug("Database Size: {} cats", dbSize);
         return catRepo.findAll().size();
     }
 
