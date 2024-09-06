@@ -4,10 +4,12 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import purrfectMate.Security.UserPrincipal;
 import purrfectMate.data.entity.Cat;
 import purrfectMate.service.CatService;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -41,11 +43,14 @@ public class CatEndpointSecured {
         return catService.findCatsByLocation(userLocation);
     }
 
+
     @PostMapping("/{humanId}/registerCat")
-    // @PreAuthorize("#humanId == authentication.principal.userId")
     @Secured("ROLE_USER")
-    public Cat addCat(@PathVariable Long humanId, @RequestBody Cat cat) {
-        return catService.createCat(cat, humanId);
+    public Cat addCat(@PathVariable Long humanId,
+                      @RequestPart("cat") Cat cat,      // RequestPart is necessary because RequestBody would work with JSON but picture can't be included in JSON
+                      @RequestParam("file") MultipartFile file) throws IOException {
+
+        return catService.createCat(cat, file, humanId);
     }
 
     @DeleteMapping()
