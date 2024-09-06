@@ -1,8 +1,6 @@
 package purrfectMate.controllers.rest;
 
-
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -44,7 +42,7 @@ public class CatEndpointSecured {
     }
 
     @PostMapping("/{humanId}/registerCat")
-    @PreAuthorize("#humanId == authentication.principal.userId")
+    // @PreAuthorize("#humanId == authentication.principal.userId")
     @Secured("ROLE_USER")
     public Cat addCat(@PathVariable Long humanId, @RequestBody Cat cat) {
         return catService.createCat(cat, humanId);
