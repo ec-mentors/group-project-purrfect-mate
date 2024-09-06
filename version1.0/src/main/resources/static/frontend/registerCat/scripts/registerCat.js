@@ -53,6 +53,7 @@ document.getElementById('cat-form').onsubmit = async function(event) {
 
         if (response.ok) {
             console.log('Cat registered successfully!');
+            window.location.href = "/yourCollection"
         } else {
             console.error('Failed to register cat');
         }
