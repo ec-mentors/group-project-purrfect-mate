@@ -40,6 +40,11 @@ public class CatEndpointSecured {
         return catService.getCatWithImageById(catId);
     }
 
+    @GetMapping("/numberOfCatsInDatabase")
+    public int getNumberOfCatsInDatabase() {
+        return catService.returnNumberOfCatsInDatabase();
+    }
+
     @GetMapping()
     @Secured("ROLE_USER")
     public List<Cat> getCatsByLocation() {

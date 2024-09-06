@@ -37,6 +37,10 @@ public class CatService {
         return catRepo.findAll();
     }
 
+    public int returnNumberOfCatsInDatabase() {
+        return catRepo.findAll().size();
+    }
+
 
     public ResponseEntity<CatResponseDTO> getCatWithImageById(Long id) throws IOException {
 
