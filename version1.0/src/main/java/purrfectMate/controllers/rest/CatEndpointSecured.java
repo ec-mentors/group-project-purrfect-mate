@@ -9,6 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import purrfectMate.Security.UserPrincipal;
+import purrfectMate.data.dto.CatResponseDTO;
 import purrfectMate.data.entity.Cat;
 import purrfectMate.service.CatService;
 
@@ -20,7 +21,6 @@ import java.util.List;
 public class CatEndpointSecured {
 
     private final Logger logger;
-
     private final CatService catService;
 
     public CatEndpointSecured(CatService catService, Logger logger) {
@@ -28,10 +28,16 @@ public class CatEndpointSecured {
         this.logger = logger;
     }
 
-    @GetMapping("/{humanId}")
+    @GetMapping("/{humanId}/cats")
     @Secured("ROLE_ADMIN")
     public List<Cat> getCatsByHumanId(@PathVariable Long humanId) {
         return catService.findCatsByHumanId(humanId);
+    }
+
+    @GetMapping("/{catId}")
+    @Secured("ROLE_USER")
+    public ResponseEntity<CatResponseDTO> getCatById(@PathVariable Long catId) throws IOException {
+        return catService.getCatWithImageById(catId);
     }
 
     @GetMapping()

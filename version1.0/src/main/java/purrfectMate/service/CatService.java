@@ -2,12 +2,14 @@ package purrfectMate.service;
 
 
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import purrfectMate.Security.UserPrincipal;
+import purrfectMate.data.dto.CatResponseDTO;
 import purrfectMate.data.entity.Cat;
 import purrfectMate.data.entity.User;
 import purrfectMate.data.repository.CatRepository;
@@ -17,6 +19,7 @@ import purrfectMate.data.repository.UserRepository;
 import java.io.IOException;
 import java.util.Base64;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CatService {
@@ -29,13 +32,39 @@ public class CatService {
         this.catRepo = catRepo;
     }
 
+
     public List<Cat> getAllCats() {
         return catRepo.findAll();
     }
 
+
+    public ResponseEntity<CatResponseDTO> getCatWithImageById(Long id) throws IOException {
+
+        Optional<Cat> oCat = catRepo.findCatById(id);
+
+        // if cat not found in database
+        if (!oCat.isPresent()) {
+             return (ResponseEntity<CatResponseDTO>) ResponseEntity.notFound();
+        }
+
+        Cat foundCat = oCat.get();
+        CatResponseDTO response = new CatResponseDTO(
+                foundCat.getName(),
+                foundCat.getAge(),
+                foundCat.getGender(),
+                foundCat.getLocation(),
+                foundCat.getDescription(),
+                foundCat.getPicture() // Picture as a Base64-encoded string
+        );
+
+        return ResponseEntity.ok(response);
+    }
+
+
     public List<Cat> findCatsByHumanId(Long humanId) {
         return catRepo.findCatsByHumanId(humanId);
     }
+
 
     public List<Cat> findCatsByLocation(String location) {
         return catRepo.findByLocation(location);
