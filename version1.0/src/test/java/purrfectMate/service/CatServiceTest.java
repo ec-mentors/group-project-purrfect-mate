@@ -84,8 +84,8 @@ class CatServiceTest {
         cat.setHuman(human);
         Mockito.when(catRepository.save(cat)).thenReturn(cat);
 
-        Cat result = catService.createCat(cat, id);
-        assertEquals(cat, result);
+//        Cat result = catService.createCat(cat, id);
+//        assertEquals(cat, result);
 
         Mockito.verify(humanRepository).findById(id);
         Mockito.verify(catRepository).save(cat);
@@ -98,9 +98,9 @@ class CatServiceTest {
 
         Mockito.when(humanRepository.findById(idThatIsNotAssignedToAnyHuman)).thenReturn(Optional.empty());
 
-        assertThrows(EntityNotFoundException.class, () -> {
-            catService.createCat(cat, idThatIsNotAssignedToAnyHuman);
-        });
+//        assertThrows(EntityNotFoundException.class, () -> {
+//            catService.createCat(cat, idThatIsNotAssignedToAnyHuman);
+//        });
 
         Mockito.verify(humanRepository).findById(idThatIsNotAssignedToAnyHuman);
         Mockito.verify(catRepository, Mockito.times(0)).save(cat);

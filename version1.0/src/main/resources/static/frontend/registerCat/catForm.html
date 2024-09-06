@@ -23,7 +23,7 @@
     <h3>Register cat</h3>
     <br>
 
-    <form id="cat-form" novalidate>
+    <form id="cat-form" enctype="multipart/form-data" novalidate>
         <div class="form-group">
             <label for="input-catname">
                 Name
@@ -92,7 +92,7 @@
             </span>
             </label>
         <!-- The `multiple` attribute lets users select multiple files. -->
-        <input type="file" id="file-selector" multiple>
+        <input type="file" id="file-selector" name="file" class="form-control">
         </div>
 
         <button type="submit" class="btn purr my-3">Submit</button>

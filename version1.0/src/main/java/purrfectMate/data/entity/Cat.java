@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "cats")
-@JsonPropertyOrder(value = { "id", "name", "age", "gender", "description", "location", "isUpForAdoption", "isNeutered", "isOutdoorCat", "human" })
+@JsonPropertyOrder(value = { "id", "name", "age", "gender", "description", "location", "isUpForAdoption", "isNeutered", "isOutdoorCat", "human", "picture" })
 public class Cat {
 
     @Id
@@ -43,6 +43,9 @@ public class Cat {
     @ElementCollection(fetch = FetchType.EAGER)
     List<String> healthAttributes;
 
+    @Lob
+    @Column(columnDefinition = "MEDIUMBLOB")
+    private String picture;
 
     @ManyToOne()
     @JoinColumn(name = "human_id")
@@ -69,7 +72,8 @@ public class Cat {
                boolean isNeutered,
                boolean isOutdoorCat,
                List<String> healthAttributes,
-               User human) {
+               User human,
+               String picture) {
 
         this.id = id;
         this.name = name;
@@ -82,6 +86,7 @@ public class Cat {
         this.isOutdoorCat = isOutdoorCat;
         this.healthAttributes = healthAttributes;
         this.human = human;
+        this.picture = picture;
     }
 
     public Long getId() {
@@ -162,6 +167,14 @@ public class Cat {
 
     public void setHealthAttributes(List<String> healthAttributes) {
         this.healthAttributes = healthAttributes;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 
     public User getHuman() {

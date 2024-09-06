@@ -15,6 +15,12 @@ spring:
         hibernate:
             ddl-auto: "update"  # Specifies the action taken for database schema management, "update" keeps the schema updated without losing data
 
+    # configure backend to handle multipart/form-data requests by enabling multipart support in Spring Boot application
+    servlet:
+        multipart:
+            enabled: true
+            max-file-size: 10MB
+            max-request-size: 10MB
 
 authorities:
     user: "ROLE_USER"
@@ -27,7 +33,8 @@ logging:
         org:
             springframework:    # These are the relevant modules for our application context
              security: "DEBUG"    # Use for debugging authentication and authorization issues.
-            # web: "DEBUG"         # Use to debug request/response handling, especially for web endpoints.
+             web: "DEBUG"         # Use to debug request/response handling, especially for web endpoints.
+             http: "DEBUG"
             # data: "DEBUG"        # Use to monitor JPA repositories and database queries.
             # orm: "DEBUG"         # Use for debugging JPA/Hibernate entity management.
             # jdbc: "DEBUG"        # Use to see detailed SQL execution and database interactions.

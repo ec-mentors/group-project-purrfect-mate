@@ -17,17 +17,29 @@ async function fetchUserId() {
 }
 
 document.getElementById('cat-form').onsubmit = async function(event) {
-    event.preventDefault();  // Prevent default form submission
-    clearErrors();  // Clear previous error messages
 
-    // Gather input values
+    event.preventDefault();
+
     const name = document.getElementById('input-catname').value.trim();
     const age = document.getElementById('input-age').value.trim();
-    const gender = document.getElementById('input-gender').value.toUpperCase();
+    const gender = document.getElementById('input-gender').value;
     const description = document.getElementById('input-description').value;
     const location = document.getElementById('input-location').value;
 
-    const formData = { name, age, gender, description, location };
+    const catData = {
+        name,
+        age,
+        gender,
+        description,
+        location
+    };
+
+    const fileInput = document.getElementById('file-selector');
+    const file = fileInput.files[0];  // Assuming you select only one file
+
+    const formData = new FormData();
+    formData.append('file', file);  // Append the file
+    formData.append('cat', new Blob([JSON.stringify(catData)], { type: "application/json" }));  // append the cat JSON
 
     try {
         // Fetch userId from the backend
@@ -36,8 +48,7 @@ document.getElementById('cat-form').onsubmit = async function(event) {
         // Make the API request with the userId
         const response = await fetch(`/cats/${userId}/registerCat`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(formData),
+            body: formData
         });
 
         if (response.ok) {
