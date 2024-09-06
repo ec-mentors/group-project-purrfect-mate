@@ -12,6 +12,7 @@ import purrfectMate.data.entity.User;
 import purrfectMate.data.repository.CatRepository;
 import purrfectMate.data.repository.UserRepository;
 
+import java.sql.PreparedStatement;
 import java.util.List;
 
 @Service
@@ -51,6 +52,8 @@ public class CatService {
         }
 
         cat.setHuman(human);
+        
+
         return catRepo.save(cat);
     }
 
