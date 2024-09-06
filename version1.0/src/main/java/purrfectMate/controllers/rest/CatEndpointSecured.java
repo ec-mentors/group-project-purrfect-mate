@@ -54,7 +54,7 @@ public class CatEndpointSecured {
     @Secured("ROLE_USER")
     public ResponseEntity<Cat> addCat(@PathVariable Long humanId,
                                  @RequestPart("cat") Cat cat,      // RequestPart is necessary because RequestBody would work with JSON but picture can't be included in JSON
-                                 @RequestParam("file") MultipartFile file) throws IOException {
+                                 @RequestParam("file") MultipartFile file) {
 
         try {
             return ResponseEntity.status(HttpStatus.CREATED).body(catService.createCat(cat, file, humanId));
