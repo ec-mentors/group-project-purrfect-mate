@@ -28,7 +28,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/frontend/**",
                                 "/api/registration", "/register",
-                                "/login", "/nav", "/auth/status", "/home").permitAll()
+                                "/login", "/nav", "/auth/status", "/home", "/").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form

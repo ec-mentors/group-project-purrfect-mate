@@ -1,4 +1,4 @@
-package purrfectMate.controllers.rest.internal;
+package purrfectMate.controllers.rest;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
