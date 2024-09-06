@@ -43,7 +43,7 @@ public class CatEndpointSecured {
         return catService.findCatsByLocation(userLocation);
     }
 
-    @PostMapping("/{humanId}/addCat")
+    @PostMapping("/{humanId}/registerCat")
     @PreAuthorize("#humanId == authentication.principal.userId")
     @Secured("ROLE_USER")
     public Cat addCat(@PathVariable Long humanId, @RequestBody Cat cat) {

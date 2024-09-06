@@ -54,8 +54,8 @@
             </span>
             </label>
             <select id="input-gender" name="input-gender">
-                <option value="male">Male</option>
-                <option value="female">Female</option>
+                <option value="MALE">Male</option>
+                <option value="FEMALE">Female</option>
             </select>
             <span id="gender-error" class="select-danger"></span>
         </div>
@@ -72,16 +72,16 @@
         </div>
 
         <div class="form-group" style="display: flex; flex-direction: column;">
-            <label for="input-country">
+            <label for="input-location">
                 Location
                 <span data-bs-toggle="tooltip" data-bs-placement="top" title="What's your cat's current location?">
                 <i class="bi bi-info-circle"></i>
             </span>
             </label>
-            <input list="countries" name="country" id="input-country">
+            <input list="countries" name="location" id="input-location">
             <datalist id="countries"></datalist>
 
-            <span id="country-error" class="select-danger"></span>
+            <span id="location-error" class="select-danger"></span>
         </div>
 
         <div class="form-group" style="display: flex; flex-direction: column;">
@@ -101,6 +101,7 @@
 </div>
 
 <script src="/frontend/global/global.js"></script>
+<script type="module" src="/frontend/registercat/scripts/formHandler.js"></script>
 <script type="module" src="/frontend/registercat/scripts/getCountries.js"></script>
 <script type="module" src="/frontend/registercat/scripts/selectFiles.js"></script>
 </body>
