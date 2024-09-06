@@ -9,7 +9,7 @@ async function fetchUserId() {
     if (response.ok) {
         const user = await response.json();
         console.log(user);  // Log the entire response object
-        alert(user);  // Check the entire response in the console
+        // alert(user);  // Check the entire response in the console
         return user.id;
     } else {
         throw new Error('Failed to fetch user information');
@@ -32,7 +32,6 @@ document.getElementById('cat-form').onsubmit = async function(event) {
     try {
         // Fetch userId from the backend
         const userId = await fetchUserId();
-        alert(userId);
 
         // Make the API request with the userId
         const response = await fetch(`/cats/${userId}/registerCat`, {
