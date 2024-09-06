@@ -81,6 +81,10 @@ body {
     background: var(--gradient-color-1);
 }
 
+.field-bg {
+    background-color: white !important;
+}
+
 .purr-container {
     border-radius: 20px !important; /* Optional: for rounded corners */
     background-image: var(--primary), var(--primary) !important; /* Double background */
