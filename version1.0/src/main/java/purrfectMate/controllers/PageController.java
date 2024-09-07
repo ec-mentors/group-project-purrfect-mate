@@ -39,6 +39,11 @@ public class PageController {
         return prefix + "catProfile/catProfile.html";
     }
 
+    @GetMapping("/favicon.ico")
+    public String serveFavicon() {
+        return prefix + "pics/favicon.ico";
+    }
+
     @GetMapping
     public String serveHomePage() {
         return "/home";
