@@ -1,40 +1,16 @@
 document.addEventListener('DOMContentLoaded', async function () {
     try {
 
-        const dbResponse = await fetch("/cats/numberOfCatsInDatabase");
+        const numberOfCatsResponse = await fetch("/cats/numberOfCatsInDatabase");
 
-        let dbSize = 0;
-// Check if response is OK and parse it correctly
-        if (dbResponse.ok) {
-            // Assuming the response is JSON, parse it
-            dbSize = await dbResponse.json(); // if the response type is JSON
-        } else {
-            console.error("Failed to fetch data:", dbResponse.statusText);
-        }
+        const dbSize = await getDbSize();
 
-        const randomInt = getRandomInteger(dbSize);
-        // Fetch the cat data from the endpoint, assuming the endpoint returns the CatResponseDTO object
-        const response = await fetch("/cats/" + randomInt);
-
-
-        // Check if the response is successful
-        if (!response.ok) {
-            throw new Error(`Error while fetching cat data: ${response.status}`);
-        }
-
-        // Parse the response JSON
-        const catData = await response.json();
-
-        // Get the image format from the picture data
+        const catProfileResponse = await fetch("/cats/" + getRandomInteger(dbSize));
+        const catData = await catProfileResponse.json();
         const format = getImageFormat(catData.picture);
 
-        // Set the image source and other cat data
-        document.getElementById("profile-pic").src = `data:image/${format};base64,${catData.picture}`;
-        document.getElementById("name").innerText = catData.name;
-        document.getElementById("age").innerText = catData.age;
-        document.getElementById("sex").innerText = catData.gender;
-        document.getElementById("country").innerText = catData.location;
-        document.getElementById("description").innerText = catData.description;
+        fillElements(catData, format);
+
 
     } catch (error) {
         console.error('Error fetching the cat data:', error);
@@ -46,18 +22,54 @@ function getRandomInteger(max) {
 }
 
 function getImageFormat(base64String) {
-    // Check for known image signatures (magic numbers) for popular formats
-    if (base64String.startsWith('/9j/')) return 'jpeg';         // JPEG
-    if (base64String.startsWith('iVBORw0KGgo')) return 'png';   // PNG
-    if (base64String.startsWith('R0lGODdh') || base64String.startsWith('R0lGODlh')) return 'gif'; // GIF
-    if (base64String.startsWith('Qk')) return 'bmp';            // BMP
-    if (base64String.startsWith('UklGR')) return 'webp';        // WebP
-    if (base64String.startsWith('PD94bWwg') || base64String.startsWith('PHN2Zw')) return 'svg+xml'; // SVG
-    if (base64String.startsWith('AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAgAAAAQAAAAAEA')) return 'ico'; // ICO
-    // Default fallback to 'jpeg' if format is unknown or cannot be determined
-    return 'jpeg';
+
+    const header = base64String.slice(0, 12);
+
+    switch (true) {
+
+        case header.startsWith('/9j/'):
+            return 'jpeg';
+
+        case header.startsWith('iVBORw0KGgo'):
+            return 'png';
+
+        case header.startsWith('R0lGODdh') || header.startsWith('R0lGODlh'):
+            return 'gif';
+
+        case header.startsWith('Qk'):
+            return 'bmp';
+
+        case header.startsWith('UklGR'):
+            return 'webp';
+
+        case header.startsWith('PD94bWwg') || header.startsWith('PHN2Zw'):
+            return 'svg+xml';
+
+        case header.startsWith('AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAgAAAAQAAAAAEA'):
+            return 'ico';
+        default:
+            return 'jpeg';
+    }
 }
 
-async function fetchCatData() {
+function fillElements(catData, format) {
 
+    document.getElementById("profile-pic").src = `data:image/${format};base64,${catData.picture}`;
+    document.getElementById("name").innerText = catData.name;
+    document.getElementById("age").innerText = catData.age;
+    document.getElementById("sex").innerText = catData.gender;
+    document.getElementById("country").innerText = catData.location;
+    document.getElementById("description").innerText = catData.description;
+
+}
+
+async function getDbSize() {
+
+    const numberOfCatsResponse = await fetch("/cats/numberOfCatsInDatabase");
+
+    if (numberOfCatsResponse.ok) {
+        return await numberOfCatsResponse.json();
+    } else {
+        console.error("Failed to fetch data:", numberOfCatsResponse.statusText);
+    }
 }
