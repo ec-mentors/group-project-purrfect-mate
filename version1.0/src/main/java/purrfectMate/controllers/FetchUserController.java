@@ -11,10 +11,8 @@ import java.security.Principal;
 @RequestMapping("/users")
 public class FetchUserController {
 
-    // to be able to get the user's ID in the javascript frontend when posting a cat
     @GetMapping("/me")
     public UserPrincipal getCurrentUser(Principal principal) {
-        UserPrincipal userPrincipal = (UserPrincipal) ((UsernamePasswordAuthenticationToken) principal).getPrincipal();
-        return userPrincipal;
+        return (UserPrincipal) ((UsernamePasswordAuthenticationToken) principal).getPrincipal();
     }
 }
