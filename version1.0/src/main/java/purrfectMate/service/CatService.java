@@ -63,7 +63,10 @@ public class CatService {
                 foundCat.getGender(),
                 foundCat.getLocation(),
                 foundCat.getDescription(),
-                foundCat.getPicture() // Picture as a Base64-encoded string
+                foundCat.getPicture(), // Picture as a Base64-encoded string
+                foundCat.isUpForAdoption(),
+                foundCat.isNeutered(),
+                foundCat.isOutdoorCat()
         );
 
         return ResponseEntity.ok(response);

@@ -1,5 +1,5 @@
 function clearErrors() {
-    ['catname-error', 'age-error', 'gender-error', 'description-error', 'location-error'].forEach(id => {
+    ['catname-error', 'age-error', 'gender-error', 'description-error', 'location-error', 'adoption-error'].forEach(id => {
         document.getElementById(id).textContent = '';
     });
 }
@@ -25,13 +25,19 @@ document.getElementById('cat-form').onsubmit = async function(event) {
     const gender = document.getElementById('input-gender').value;
     const description = document.getElementById('input-description').value;
     const location = document.getElementById('input-location').value;
+    const isUpForAdoption = document.getElementById('input-adoption-yes').checked;
+    const isNeutered = document.getElementById('input-neuter-yes').checked;
+    const isOutdoor = document.getElementById('input-outdoor-yes').checked;
 
     const catData = {
         name,
         age,
         gender,
         description,
-        location
+        location,
+        isUpForAdoption,
+        isNeutered,
+        isOutdoor
     };
 
     const fileInput = document.getElementById('file-selector');

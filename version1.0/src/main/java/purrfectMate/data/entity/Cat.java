@@ -52,13 +52,6 @@ public class Cat {
     private User human;
 
 
-    public Cat(String name, User human) {
-        this.name = name;
-        this.human = human;
-    }
-
-
-
     public Cat() {
     }
 
