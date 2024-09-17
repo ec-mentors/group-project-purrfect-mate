@@ -67,6 +67,8 @@ public class CatEndpointSecured {
                                  @RequestParam("file") MultipartFile file) {
 
         try {
+            // Check if the cat object is correctly populated
+            // System.out.println("Received Cat data: " + cat);
             return ResponseEntity.status(HttpStatus.CREATED).body(catService.createCat(cat, file, humanId));
         } catch (IOException e) {
             logger.debug("IOException while writing image: {}", e.getMessage());

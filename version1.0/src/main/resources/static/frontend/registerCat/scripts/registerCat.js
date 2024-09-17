@@ -25,9 +25,10 @@ document.getElementById('cat-form').onsubmit = async function(event) {
     const gender = document.getElementById('input-gender').value;
     const description = document.getElementById('input-description').value;
     const location = document.getElementById('input-location').value;
+
     const isUpForAdoption = document.getElementById('input-adoption-yes').checked;
     const isNeutered = document.getElementById('input-neuter-yes').checked;
-    const isOutdoor = document.getElementById('input-outdoor-yes').checked;
+    const isOutdoorCat = document.getElementById('input-outdoor-yes').checked;
 
     const catData = {
         name,
@@ -37,7 +38,7 @@ document.getElementById('cat-form').onsubmit = async function(event) {
         location,
         isUpForAdoption,
         isNeutered,
-        isOutdoor
+        isOutdoorCat
     };
 
     const fileInput = document.getElementById('file-selector');
@@ -46,6 +47,14 @@ document.getElementById('cat-form').onsubmit = async function(event) {
     const formData = new FormData();
     formData.append('file', file);  // Append the file
     formData.append('cat', new Blob([JSON.stringify(catData)], { type: "application/json" }));  // append the cat JSON
+
+    // for (const [key, value] of formData.entries()) {
+    //     if (value instanceof Blob) {
+    //         value.text().then(text => console.log(`${key}:`, text));
+    //     } else {
+    //         console.log(`${key}:`, value);
+    //     }
+    // }
 
     try {
         // Fetch userId from the backend
@@ -59,7 +68,7 @@ document.getElementById('cat-form').onsubmit = async function(event) {
 
         if (response.ok) {
             console.log('Cat registered successfully!');
-            window.location.href = "/yourCollection"
+            // window.location.href = "/yourCollection"
         } else {
             console.error('Failed to register cat');
         }

@@ -1,5 +1,6 @@
 package purrfectMate.data.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import jakarta.persistence.*;
 import purrfectMate.data.Gender;
@@ -30,13 +31,11 @@ public class Cat {
     @Column()
     private String location;
 
-    @Column()
     private boolean isUpForAdoption;
 
-    @Column()
     private boolean isNeutered;
 
-    @Column()
+    // @JsonProperty("isOutdoorCat") this is to make sure it gets deserialized properly (necessary if parameters are not called exactly the same in java and javascript)
     private boolean isOutdoorCat;
 
     @Column()
@@ -134,24 +133,24 @@ public class Cat {
         return isUpForAdoption;
     }
 
-    public void setUpForAdoption(boolean upForAdoption) {
-        isUpForAdoption = upForAdoption;
+    public void setIsUpForAdoption(boolean isUpForAdoption) {
+        this.isUpForAdoption = isUpForAdoption;
     }
 
     public boolean isNeutered() {
         return isNeutered;
     }
 
-    public void setNeutered(boolean neutered) {
-        isNeutered = neutered;
+    public void setIsNeutered(boolean isNeutered) {
+        this.isNeutered = isNeutered;
     }
 
     public boolean isOutdoorCat() {
         return isOutdoorCat;
     }
 
-    public void setOutdoorCat(boolean outdoorCat) {
-        isOutdoorCat = outdoorCat;
+    public void setIsOutdoorCat(boolean isOutdoorCat) {
+        this.isOutdoorCat = isOutdoorCat;
     }
 
     public List<String> getHealthAttributes() {
@@ -176,5 +175,21 @@ public class Cat {
 
     public void setHuman(User human) {
         this.human = human;
+    }
+
+    @Override
+    public String toString() {
+        return "Cat{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", gender=" + gender +
+                ", description='" + description + '\'' +
+                ", location='" + location + '\'' +
+                ", isUpForAdoption=" + isUpForAdoption +
+                ", isNeutered=" + isNeutered +
+                ", isOutdoorCat=" + isOutdoorCat +
+                ", healthAttributes=" + healthAttributes +
+                '}';
     }
 }
