@@ -86,21 +86,6 @@
                     <span id="location-error" class="select-danger"></span>
                 </div>
 
-                <div class="form-check" style="display: flex; flex-direction: column;">
-                    <label for="input-neuter">
-                        Neuter Status
-                        <span data-bs-toggle="tooltip" data-bs-placement="top" title="Is your cat neutered?">
-                <i class="bi bi-info-circle"></i>
-            </span>
-                    </label>
-                    <input class="form-check-input" id="input-neuter" name="input-neuter">
-
-                    </input>
-                    <span id="neuter-error" class="select-danger"></span>
-                </div>
-
-
-
                 <div class="form-group" style="display: flex; flex-direction: column;">
                     <label for="file-selector">
                         Profile Picture
@@ -111,6 +96,59 @@
                     <!-- The `multiple` attribute lets users select multiple files. -->
                     <input type="file" id="file-selector" name="file" class="form-control">
                 </div>
+
+                <div class="form-group" style="display: flex; flex-direction: column;" >
+                    <label>
+                        Adoption
+                        <span data-bs-toggle="tooltip" data-bs-placement="top" title="Is your cat up for adoption?">
+            <i class="bi bi-info-circle"></i>
+        </span>
+                    </label>
+
+                    <!-- Checkbox for 'Yes' -->
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="input-adoption-yes" name="input-adoption" value="true">
+                        <label class="form-check-label" for="input-adoption-yes">Yes</label>
+                    </div>
+
+                    <span id="adoption-error" class="select-danger"></span>
+                </div>
+
+
+                <div class="form-group" style="display: flex; flex-direction: column;">
+                    <label>
+                        Neutered
+                        <span data-bs-toggle="tooltip" data-bs-placement="top" title="Is your cat neutered?">
+            <i class="bi bi-info-circle"></i>
+        </span>
+                    </label>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="input-neuter-yes" name="input-neuter" value="true">
+                        <label class="form-check-label" for="input-neuter-yes">Yes</label>
+                    </div>
+
+
+                    <span id="neuter-error" class="select-danger"></span>
+                </div>
+
+                <div class="form-group" style="display: flex; flex-direction: column;">
+                    <label>
+                        Outdoor
+                        <span data-bs-toggle="tooltip" data-bs-placement="top" title="Is your cat an outdoor cat?">
+            <i class="bi bi-info-circle"></i>
+        </span>
+                    </label>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="input-outdoor-yes" name="input-outdoor" value="true">
+                        <label class="form-check-label" for="input-outdoor-yes">Yes</label>
+                    </div>
+
+                    <span id="outdoor-error" class="select-danger"></span>
+                </div>
+
+
 
                 <button type="submit" class="btn purr-button-green my-3">Submit</button>
             </form>
