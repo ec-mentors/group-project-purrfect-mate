@@ -29,7 +29,7 @@ document.getElementById('cat-form').onsubmit = async function(event) {
     const isNeutered = document.getElementById('input-neuter-yes').checked;
     const isOutdoorCat = document.getElementById('input-outdoor-yes').checked;
 
-    // save health attributes from getHealthAttributes function to another variable or send it somewhere
+    // save health attributes from getHealthAttributes function to another variable
     const healthAttributes = [...healthAttributesList];
     // console.log('Health Attributes:', healthAttributes);
 

@@ -66,7 +66,8 @@ public class CatService {
                 foundCat.getPicture(), // Picture as a Base64-encoded string
                 foundCat.isUpForAdoption(),
                 foundCat.isNeutered(),
-                foundCat.isOutdoorCat()
+                foundCat.isOutdoorCat(),
+                foundCat.getHealthAttributes()
         );
 
         return ResponseEntity.ok(response);

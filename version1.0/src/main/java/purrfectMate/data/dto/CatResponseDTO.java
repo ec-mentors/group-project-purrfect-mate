@@ -2,6 +2,8 @@ package purrfectMate.data.dto;
 
 import purrfectMate.data.Gender;
 
+import java.util.List;
+
 public class CatResponseDTO {
 
     private String name;
@@ -13,13 +15,14 @@ public class CatResponseDTO {
     private boolean isUpForAdoption;
     private boolean isNeutered;
     private boolean isOutdoor;
+    private List<String> healthAttributes;
 
     public CatResponseDTO() {
     }
 
     public CatResponseDTO(String name, int age, Gender gender,
                           String location, String description, String picture,
-                          boolean isUpForAdoption, boolean isNeutered, boolean isOutdoor) {
+                          boolean isUpForAdoption, boolean isNeutered, boolean isOutdoor, List<String> healthAttributes) {
         this.name = name;
         this.age = age;
         this.gender = gender;
@@ -29,6 +32,7 @@ public class CatResponseDTO {
         this.isUpForAdoption = isUpForAdoption;
         this.isNeutered = isNeutered;
         this.isOutdoor = isOutdoor;
+        this.healthAttributes = healthAttributes;
     }
 
     public String getName() {
@@ -101,5 +105,13 @@ public class CatResponseDTO {
 
     public void setOutdoor(boolean outdoor) {
         isOutdoor = outdoor;
+    }
+
+    public List<String> getHealthAttributes() {
+        return healthAttributes;
+    }
+
+    public void setHealthAttributes(List<String> healthAttributes) {
+        this.healthAttributes = healthAttributes;
     }
 }
