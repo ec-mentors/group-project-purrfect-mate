@@ -1,8 +1,7 @@
-function clearErrors() {
-    ['catname-error', 'age-error', 'gender-error', 'description-error', 'location-error', 'adoption-error'].forEach(id => {
-        document.getElementById(id).textContent = '';
-    });
-}
+import { healthAttributesList, initHealthInput } from './getHealthAttributes.js';
+
+// Initialize the health input field functionality
+initHealthInput();
 
 async function fetchUserId() {
     const response = await fetch('/users/me');
@@ -30,6 +29,10 @@ document.getElementById('cat-form').onsubmit = async function(event) {
     const isNeutered = document.getElementById('input-neuter-yes').checked;
     const isOutdoorCat = document.getElementById('input-outdoor-yes').checked;
 
+    // save health attributes from getHealthAttributes function to another variable or send it somewhere
+    const healthAttributes = [...healthAttributesList];
+    // console.log('Health Attributes:', healthAttributes);
+
     const catData = {
         name,
         age,
@@ -38,7 +41,8 @@ document.getElementById('cat-form').onsubmit = async function(event) {
         location,
         isUpForAdoption,
         isNeutered,
-        isOutdoorCat
+        isOutdoorCat,
+        healthAttributes
     };
 
     const fileInput = document.getElementById('file-selector');
