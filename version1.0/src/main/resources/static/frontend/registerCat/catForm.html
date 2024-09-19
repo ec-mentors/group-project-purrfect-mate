@@ -97,6 +97,20 @@
                     <input type="file" id="file-selector" name="file" class="form-control">
                 </div>
 
+                <div class="form-group" style="display: flex; flex-direction: column;">
+                    <label>
+                        Health Attributes
+                        <span data-bs-toggle="tooltip" data-bs-placement="top" title="Enter anything related to your cat's health.">
+            <i class="bi bi-info-circle"></i>
+        </span>
+                    </label>
+
+                    <div class="form-control" id="input-health" contenteditable="true" aria-describedby="health-help" style="overflow-y: auto; position: relative;">
+                        <span id="placeholder-text" style="color: #6c757d; position: absolute; pointer-events: none;">Type here and press Tab to separate words or phrases...</span>
+                    </div>
+
+                </div>
+
                 <div class="form-group" style="display: flex; flex-direction: column;" >
                     <label>
                         Adoption
@@ -161,5 +175,6 @@
 <script type="module" src="/frontend/registerCat/scripts/getLocation.js"></script>
 <script type="module" src="/frontend/registerCat/scripts/selectFiles.js"></script>
 <script type="module" src="/frontend/registerCat/scripts/selectAge.js"></script>
+<script type="module" src="/frontend/registerCat/scripts/getHealthAttributes.js"></script>
 </body>
 </html>
