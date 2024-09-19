@@ -9,11 +9,11 @@ document.addEventListener('DOMContentLoaded', function () {
     // Form submission validation
     const form = document.getElementById('login-form');
     form.addEventListener('submit', function (event) {
-        const recaptchaResponse = grecaptcha.getResponse();
-        if (!recaptchaResponse) {
-            displayRecaptchaError('Please complete the reCAPTCHA to proceed.');
-            event.preventDefault(); // Prevent form submission if reCAPTCHA is not completed
-        }
+        // const recaptchaResponse = grecaptcha.getResponse();
+        // if (!recaptchaResponse) {
+        //     displayRecaptchaError('Please complete the reCAPTCHA to proceed.');
+        //     event.preventDefault(); // Prevent form submission if reCAPTCHA is not completed
+        // }
     });
 });
 

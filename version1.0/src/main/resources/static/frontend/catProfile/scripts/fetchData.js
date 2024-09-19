@@ -60,6 +60,7 @@ function fillElements(catData, format) {
     document.getElementById("sex").innerText = catData.gender;
     document.getElementById("country").innerText = catData.location;
     document.getElementById("description").innerText = catData.description;
+    document.getElementById("health").innerText = catData.healthAttributes;
 }
 
 async function getDbSize() {
